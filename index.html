@@ -36,9 +36,6 @@
         .btn-secondary {
             background: linear-gradient(45deg, #00d4aa, #00bfa5);
         }
-        .btn-kit {
-            background: linear-gradient(45deg, #ffd700, #ff6b35);
-        }
         .progress-bar {
             background: linear-gradient(90deg, #ff69b4, #ffd700);
         }
@@ -55,6 +52,14 @@
         @keyframes zoomIn {
             from { transform: scale(0.95); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
+        }
+        .email-error {
+            color: #ff4444;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+        .error-border {
+            border-color: #ff4444 !important;
         }
     </style>
 </head>
@@ -169,10 +174,12 @@
                     <div class="max-w-md mx-auto">
                         <label class="block text-left mb-2 font-semibold">📧 Digite seu melhor email:</label>
                         <input type="email" id="email-input" required 
+                               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                                class="w-full p-4 rounded-lg text-black text-center text-lg font-semibold" 
                                placeholder="seu@email.com">
-                        <button onclick="window.open('https://rijfhzgz.gensparkspace.com/', '_blank')" class="btn-primary text-white text-xl font-bold py-4 px-12 rounded-full hover:transform hover:scale-105 transition duration-300 shadow-lg">
-    <i class="fas fa-download mr-2"></i>
+                        <div id="email-error" class="email-error" style="display: none;"></div>
+                        <button type="submit" class="btn-primary w-full mt-4 text-white text-xl font-bold py-4 rounded-lg hover:transform hover:scale-105 transition duration-300">
+                            <i class="fas fa-paper-plane mr-2"></i>
                             RECEBER RESULTADO + KIT GRÁTIS
                         </button>
                     </div>
@@ -213,14 +220,12 @@
                 </div>
 
                 <div class="bg-gradient-to-r from-purple-600 to-pink-600 p-4 rounded-lg mb-6">
-                    <h3 class="text-xl font-bold mb-3">🎁 ACESSE SEU KIT AGORA:</h3>
+                    <h3 class="text-xl font-bold mb-2">🎁 ACESSE SEU KIT AGORA:</h3>
                     <p class="mb-4">Não quer esperar o email? Acesse diretamente seu Kit de Prosperidade:</p>
-                    
-                    <a href="https://rijfhzgz.gensparkspace.com/" target="_blank" 
-                       class="btn-kit text-white text-xl font-bold py-4 px-8 rounded-full hover:transform hover:scale-105 transition duration-300 shadow-lg inline-block mb-4">
+                    <button onclick="window.open('https://ycjrxnmf.gensparkspace.com/', '_blank')" class="btn-primary text-white text-xl font-bold py-4 px-12 rounded-full hover:transform hover:scale-105 transition duration-300 shadow-lg">
                         <i class="fas fa-download mr-2"></i>
                         ACESSAR MEU KIT AGORA
-                    </a>
+                    </button>
                 </div>
 
                 <div class="mb-6 p-6 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg">
@@ -252,64 +257,64 @@
             {
                 question: "Qual é a sua maior preocupação financeira atualmente?",
                 options: [
-                    { text: "Não consigo poupar dinheiro", value: "saving" },
-                    { text: "Tenho medo de investir e perder", value: "fear" },
-                    { text: "Minha renda nunca é suficiente", value: "income" },
-                    { text: "Gasto mais do que ganho", value: "spending" }
+                    { text: "🤑 Não consigo poupar dinheiro", value: "saving" },
+                    { text: "💸 Tenho medo de investir e perder", value: "fear" },
+                    { text: "📉 Minha renda nunca é suficiente", value: "income" },
+                    { text: "💰 Gasto mais do que ganho", value: "spending" }
                 ]
             },
             {
                 question: "Como você se sente em relação ao amor atualmente?",
                 options: [
-                    { text: "Estou sozinho(a) e não encontro ninguém", value: "single" },
-                    { text: "Tenho relacionamentos, mas não duram", value: "unstable" },
-                    { text: "Estou em um relacionamento, mas falta paixão", value: "routine" },
-                    { text: "Tenho medo de me entregar completamente", value: "fear_love" }
+                    { text: "😢 Estou sozinho(a) e não encontro ninguém", value: "single" },
+                    { text: "💔 Tenho relacionamentos, mas não duram", value: "unstable" },
+                    { text: "😐 Estou em um relacionamento, mas falta paixão", value: "routine" },
+                    { text: "😰 Tenho medo de me entregar completamente", value: "fear_love" }
                 ]
             },
             {
                 question: "Qual momento da vida você está vivendo?",
                 options: [
-                    { text: "Fase de muitas mudanças e incertezas", value: "change" },
-                    { text: "Buscando mais estabilidade", value: "stability" },
-                    { text: "Pronto(a) para grandes realizações", value: "achievement" },
-                    { text: "Sentindo que estou estagnado(a)", value: "stuck" }
+                    { text: "🌪️ Fase de muitas mudanças e incertezas", value: "change" },
+                    { text: "⚖️ Buscando mais estabilidade", value: "stability" },
+                    { text: "🚀 Pronto(a) para grandes realizações", value: "achievement" },
+                    { text: "😴 Sentindo que estou estagnado(a)", value: "stuck" }
                 ]
             },
             {
                 question: "Como você toma decisões financeiras importantes?",
                 options: [
-                    { text: "Sigo minha intuição e sentimentos", value: "intuitive" },
-                    { text: "Analiso todos os dados possíveis", value: "analytical" },
-                    { text: "Peço conselhos para várias pessoas", value: "advice" },
-                    { text: "Evito tomar decisões até ser obrigado(a)", value: "procrastinate" }
+                    { text: "🧠 Sigo minha intuição e sentimentos", value: "intuitive" },
+                    { text: "📊 Analiso todos os dados possíveis", value: "analytical" },
+                    { text: "👥 Peço conselhos para várias pessoas", value: "advice" },
+                    { text: "⏳ Evito tomar decisões até ser obrigado(a)", value: "procrastinate" }
                 ]
             },
             {
                 question: "O que você acredita que mais te bloqueia na vida?",
                 options: [
-                    { text: "Medo do fracasso", value: "fear_failure" },
-                    { text: "Falta de autoconfiança", value: "confidence" },
-                    { text: "Padrões familiares limitantes", value: "family" },
-                    { text: "Não sei ao certo o que quero", value: "direction" }
+                    { text: "😨 Medo do fracasso", value: "fear_failure" },
+                    { text: "😔 Falta de autoconfiança", value: "confidence" },
+                    { text: "👨‍👩‍👧‍👦 Padrões familiares limitantes", value: "family" },
+                    { text: "🤔 Não sei ao certo o que quero", value: "direction" }
                 ]
             },
             {
                 question: "Em qual área você sente que precisa de mais energia?",
                 options: [
-                    { text: "Carreira e realização profissional", value: "career" },
-                    { text: "Relacionamentos e vida amorosa", value: "love_area" },
-                    { text: "Dinheiro e abundância material", value: "money_area" },
-                    { text: "Autoestima e desenvolvimento pessoal", value: "self" }
+                    { text: "🏢 Carreira e realização profissional", value: "career" },
+                    { text: "❤️ Relacionamentos e vida amorosa", value: "love_area" },
+                    { text: "💵 Dinheiro e abundância material", value: "money_area" },
+                    { text: "🌟 Autoestima e desenvolvimento pessoal", value: "self" }
                 ]
             },
             {
                 question: "O que você mais busca para 2025?",
                 options: [
-                    { text: "Estabilidade financeira e segurança", value: "security" },
-                    { text: "Um amor verdadeiro e duradouro", value: "true_love" },
-                    { text: "Crescimento profissional e sucesso", value: "growth" },
-                    { text: "Paz interior e equilíbrio", value: "balance" }
+                    { text: "🏦 Estabilidade financeira e segurança", value: "security" },
+                    { text: "💕 Um amor verdadeiro e duradouro", value: "true_love" },
+                    { text: "📈 Crescimento profissional e sucesso", value: "growth" },
+                    { text: "🧘‍♀️ Paz interior e equilíbrio", value: "balance" }
                 ]
             }
         ];
@@ -376,20 +381,43 @@
             }, 30000); // Diminui a cada 30 segundos
         }
 
+        // Validação de email
         document.getElementById('email-form').addEventListener('submit', function(e) {
             e.preventDefault();
             const email = document.getElementById('email-input').value;
+            const emailError = document.getElementById('email-error');
+            const emailInput = document.getElementById('email-input');
             
-            if (email) {
-                document.getElementById('confirmed-email').textContent = email;
-                document.getElementById('email-gate').classList.add('hidden');
-                document.getElementById('confirmation').classList.remove('hidden');
-                
-                // Aqui você integraria com seu sistema de email marketing
-                // Por exemplo: enviar para seu CRM, Mailchimp, etc.
-                console.log('Email capturado:', email);
-                console.log('Respostas do quiz:', answers);
+            // Regex para validação de email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            // Limpar erros anteriores
+            emailError.style.display = 'none';
+            emailInput.classList.remove('error-border');
+            
+            // Validar email
+            if (!email) {
+                emailError.textContent = 'Por favor, digite seu email.';
+                emailError.style.display = 'block';
+                emailInput.classList.add('error-border');
+                return;
             }
+            
+            if (!emailRegex.test(email)) {
+                emailError.textContent = 'Por favor, digite um email válido.';
+                emailError.style.display = 'block';
+                emailInput.classList.add('error-border');
+                return;
+            }
+            
+            // Se chegou até aqui, email é válido
+            document.getElementById('confirmed-email').textContent = email;
+            document.getElementById('email-gate').classList.add('hidden');
+            document.getElementById('confirmation').classList.remove('hidden');
+            
+            // Aqui você integraria com seu sistema de email marketing
+            console.log('Email capturado:', email);
+            console.log('Respostas do quiz:', answers);
         });
 
         // Adicionar alguns efeitos visuais
@@ -434,12 +462,3 @@
     </script>
 </body>
 </html>
-    <script id="html_badge_script1">
-        window.__genspark_remove_badge_link = "https://www.genspark.ai/api/html_badge/" +
-            "remove_badge?token=To%2FBnjzloZ3UfQdcSaYfDg%2BcMbbWz94C%2FBPcwGvbQp0zEp%2BaRtMIa7Pv%2FJrAKWz8ACl6RUuNFJekR4Js6YYPAB0i8O5jcRtrxwFsuzr%2BwjfstjYMDKxeRyn%2FY4Xzm0TLgdmx6IlC60rqkDIEiycQbhdcE5d0EP0PLP6%2BY48kKCZfef7qY2kUv5WSUVHX4VSNnhgN0HkYwNHso4i8KkMjS72fsMFe%2B8HXOyX5rquoheJoj68Q00gkl7q71JJmeHAXQEOV%2FJRj1GJHADssN02La6ZkyFNJKgsxcEILbJKUXOPTMor8rhzlOCNVjaGnZm%2BTk18rM1ZToCn7goN1Hy5vzXm4ntLnLbPwESpS7EYPezg8BhixqCeV9k4rxD6VdA3Ty%2BVfwqgL3KWgCeIZtpRClSEtxPfI%2BFnUgtjMtN3JVUdvOaIeQLb5LjtOKgvDjR5UME2vj3Hp7XrNHR3ga%2BjHG9l0hB5wK5sbgC9FaNixka7OLPoV9oGOGUNtzAa0ILY8WMAv1ZQ7UE7qGoX1OS1gTxGmdl2iEpPqcT08OLAFuOk%3D";
-        window.__genspark_locale = "pt-BR";
-        window.__genspark_token = "To/BnjzloZ3UfQdcSaYfDg+cMbbWz94C/BPcwGvbQp0zEp+aRtMIa7Pv/JrAKWz8ACl6RUuNFJekR4Js6YYPAB0i8O5jcRtrxwFsuzr+wjfstjYMDKxeRyn/Y4Xzm0TLgdmx6IlC60rqkDIEiycQbhdcE5d0EP0PLP6+Y48kKCZfef7qY2kUv5WSUVHX4VSNnhgN0HkYwNHso4i8KkMjS72fsMFe+8HXOyX5rquoheJoj68Q00gkl7q71JJmeHAXQEOV/JRj1GJHADssN02La6ZkyFNJKgsxcEILbJKUXOPTMor8rhzlOCNVjaGnZm+Tk18rM1ZToCn7goN1Hy5vzXm4ntLnLbPwESpS7EYPezg8BhixqCeV9k4rxD6VdA3Ty+VfwqgL3KWgCeIZtpRClSEtxPfI+FnUgtjMtN3JVUdvOaIeQLb5LjtOKgvDjR5UME2vj3Hp7XrNHR3ga+jHG9l0hB5wK5sbgC9FaNixka7OLPoV9oGOGUNtzAa0ILY8WMAv1ZQ7UE7qGoX1OS1gTxGmdl2iEpPqcT08OLAFuOk=";
-    </script>
-    
-    <script id="html_notice_dialog_script" src="https://www.genspark.ai/notice_dialog.js"></script>
-    
