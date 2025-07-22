@@ -58,10 +58,12 @@
             transition: all 0.3s ease;
             opacity: 0;
             transform: translateY(20px);
+            display: none;
         }
         .question-card.active {
             opacity: 1;
             transform: translateY(0);
+            display: block;
         }
         .answer-option {
             transition: all 0.3s ease;
@@ -174,19 +176,19 @@
                     <span class="gradient-text">1.</span> Qual é a sua maior preocupação financeira atualmente?
                 </h2>
                 <div class="space-y-4">
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="saving" data-question="Qual é a sua maior preocupação financeira atualmente?" data-answer="A) 🤑 Não consigo poupar dinheiro">
+                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="saving">
                         <span class="text-2xl mr-3">🤑</span>
                         <span class="text-lg text-white">A) Não consigo poupar dinheiro</span>
                     </div>
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="debt" data-question="Qual é a sua maior preocupação financeira atualmente?" data-answer="B) 💳 Estou endividado(a)">
+                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="debt">
                         <span class="text-2xl mr-3">💳</span>
                         <span class="text-lg text-white">B) Estou endividado(a)</span>
                     </div>
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="income" data-question="Qual é a sua maior preocupação financeira atualmente?" data-answer="C) 📈 Preciso aumentar minha renda">
+                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="income">
                         <span class="text-2xl mr-3">📈</span>
                         <span class="text-lg text-white">C) Preciso aumentar minha renda</span>
                     </div>
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="investment" data-question="Qual é a sua maior preocupação financeira atualmente?" data-answer="D) 💎 Não sei onde investir">
+                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="investment">
                         <span class="text-2xl mr-3">💎</span>
                         <span class="text-lg text-white">D) Não sei onde investir</span>
                     </div>
@@ -199,19 +201,19 @@
                     <span class="gradient-text">2.</span> Qual é o seu status de relacionamento?
                 </h2>
                 <div class="space-y-4">
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="single" data-question="Qual é o seu status de relacionamento?" data-answer="A) 💔 Solteiro(a)">
+                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="single">
                         <span class="text-2xl mr-3">💔</span>
                         <span class="text-lg text-white">A) Solteiro(a)</span>
                     </div>
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="relationship" data-question="Qual é o seu status de relacionamento?" data-answer="B) 💑 Em um relacionamento">
+                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="relationship">
                         <span class="text-2xl mr-3">💑</span>
                         <span class="text-lg text-white">B) Em um relacionamento</span>
                     </div>
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="married" data-question="Qual é o seu status de relacionamento?" data-answer="C) 💍 Casado(a)">
+                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="married">
                         <span class="text-2xl mr-3">💍</span>
                         <span class="text-lg text-white">C) Casado(a)</span>
                     </div>
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="complicated" data-question="Qual é o seu status de relacionamento?" data-answer="D) 🤷‍♀️ É complicado">
+                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="complicated">
                         <span class="text-2xl mr-3">🤷‍♀️</span>
                         <span class="text-lg text-white">D) É complicado</span>
                     </div>
@@ -224,19 +226,19 @@
                     <span class="gradient-text">3.</span> Como você costuma lidar com mudanças importantes na vida?
                 </h2>
                 <div class="space-y-4">
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="embrace" data-question="Como você costuma lidar com mudanças importantes na vida?" data-answer="A) 🚀 Abraço com entusiasmo">
+                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="embrace">
                         <span class="text-2xl mr-3">🚀</span>
                         <span class="text-lg text-white">A) Abraço com entusiasmo</span>
                     </div>
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="cautious" data-question="Como você costuma lidar com mudanças importantes na vida?" data-answer="B) 🤔 Analiso cuidadosamente antes de agir">
+                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="cautious">
                         <span class="text-2xl mr-3">🤔</span>
                         <span class="text-lg text-white">B) Analiso cuidadosamente antes de agir</span>
                     </div>
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="resist" data-question="Como você costuma lidar com mudanças importantes na vida?" data-answer="C) 😰 Costumo resistir e me adapto lentamente">
+                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="resist">
                         <span class="text-2xl mr-3">😰</span>
                         <span class="text-lg text-white">C) Costumo resistir e me adapto lentamente</span>
                     </div>
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="flexible" data-question="Como você costuma lidar com mudanças importantes na vida?" data-answer="D) 🌊 Fluo naturalmente com as mudanças">
+                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="flexible">
                         <span class="text-2xl mr-3">🌊</span>
                         <span class="text-lg text-white">D) Fluo naturalmente com as mudanças</span>
                     </div>
@@ -249,19 +251,19 @@
                     <span class="gradient-text">4.</span> Como você prefere tomar decisões importantes?
                 </h2>
                 <div class="space-y-4">
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="logical" data-question="Como você prefere tomar decisões importantes?" data-answer="A) 📊 Baseado em dados e análises">
+                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="logical">
                         <span class="text-2xl mr-3">📊</span>
                         <span class="text-lg text-white">A) Baseado em dados e análises</span>
                     </div>
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="intuitive" data-question="Como você prefere tomar decisões importantes?" data-answer="B) 🔮 Sigo minha intuição e sinais do universo">
+                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="intuitive">
                         <span class="text-2xl mr-3">🔮</span>
                         <span class="text-lg text-white">B) Sigo minha intuição e sinais do universo</span>
                     </div>
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="advice" data-question="Como você prefere tomar decisões importantes?" data-answer="C) 👥 Peço conselhos de pessoas próximas">
+                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="advice">
                         <span class="text-2xl mr-3">👥</span>
                         <span class="text-lg text-white">C) Peço conselhos de pessoas próximas</span>
                     </div>
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="mixed" data-question="Como você prefere tomar decisões importantes?" data-answer="D) ⚖️ Combino lógica e intuição">
+                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="mixed">
                         <span class="text-2xl mr-3">⚖️</span>
                         <span class="text-lg text-white">D) Combino lógica e intuição</span>
                     </div>
@@ -274,19 +276,19 @@
                     <span class="gradient-text">5.</span> O que mais te motiva a buscar prosperidade financeira?
                 </h2>
                 <div class="space-y-4">
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="freedom" data-question="O que mais te motiva a buscar prosperidade financeira?" data-answer="A) 🆓 Liberdade e independência">
+                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="freedom">
                         <span class="text-2xl mr-3">🆓</span>
                         <span class="text-lg text-white">A) Liberdade e independência</span>
                     </div>
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="family" data-question="O que mais te motiva a buscar prosperidade financeira?" data-answer="B) 👨‍👩‍👧‍👦 Cuidar da família">
+                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="family">
                         <span class="text-2xl mr-3">👨‍👩‍👧‍👦</span>
                         <span class="text-lg text-white">B) Cuidar da família</span>
                     </div>
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="security" data-question="O que mais te motiva a buscar prosperidade financeira?" data-answer="C) 🛡️ Segurança e estabilidade">
+                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="security">
                         <span class="text-2xl mr-3">🛡️</span>
                         <span class="text-lg text-white">C) Segurança e estabilidade</span>
                     </div>
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="dreams" data-question="O que mais te motiva a buscar prosperidade financeira?" data-answer="D) ✨ Realizar sonhos e experiências">
+                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="dreams">
                         <span class="text-2xl mr-3">✨</span>
                         <span class="text-lg text-white">D) Realizar sonhos e experiências</span>
                     </div>
@@ -299,19 +301,19 @@
                     <span class="gradient-text">6.</span> Qual é o seu maior medo em relação ao futuro?
                 </h2>
                 <div class="space-y-4">
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="fear_failure" data-question="Qual é o seu maior medo em relação ao futuro?" data-answer="A) 😨 Não conseguir alcançar meus objetivos">
+                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="fear_failure">
                         <span class="text-2xl mr-3">😨</span>
                         <span class="text-lg text-white">A) Não conseguir alcançar meus objetivos</span>
                     </div>
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="fear_loneliness" data-question="Qual é o seu maior medo em relação ao futuro?" data-answer="B) 😢 Ficar sozinho(a)">
+                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="fear_loneliness">
                         <span class="text-2xl mr-3">😢</span>
                         <span class="text-lg text-white">B) Ficar sozinho(a)</span>
                     </div>
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="fear_poverty" data-question="Qual é o seu maior medo em relação ao futuro?" data-answer="C) 💸 Problemas financeiros">
+                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="fear_poverty">
                         <span class="text-2xl mr-3">💸</span>
                         <span class="text-lg text-white">C) Problemas financeiros</span>
                     </div>
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="fear_health" data-question="Qual é o seu maior medo em relação ao futuro?" data-answer="D) 🏥 Problemas de saúde">
+                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="fear_health">
                         <span class="text-2xl mr-3">🏥</span>
                         <span class="text-lg text-white">D) Problemas de saúde</span>
                     </div>
@@ -324,19 +326,19 @@
                     <span class="gradient-text">7.</span> Em que área da vida você mais deseja crescimento?
                 </h2>
                 <div class="space-y-4">
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="career" data-question="Em que área da vida você mais deseja crescimento?" data-answer="A) 💼 Carreira profissional">
+                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="career">
                         <span class="text-2xl mr-3">💼</span>
                         <span class="text-lg text-white">A) Carreira profissional</span>
                     </div>
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="love" data-question="Em que área da vida você mais deseja crescimento?" data-answer="B) ❤️ Relacionamentos amorosos">
+                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="love">
                         <span class="text-2xl mr-3">❤️</span>
                         <span class="text-lg text-white">B) Relacionamentos amorosos</span>
                     </div>
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="spiritual" data-question="Em que área da vida você mais deseja crescimento?" data-answer="C) 🧘‍♀️ Desenvolvimento espiritual">
+                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="spiritual">
                         <span class="text-2xl mr-3">🧘‍♀️</span>
                         <span class="text-lg text-white">C) Desenvolvimento espiritual</span>
                     </div>
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="personal" data-question="Em que área da vida você mais deseja crescimento?" data-answer="D) 🌟 Crescimento pessoal">
+                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="personal">
                         <span class="text-2xl mr-3">🌟</span>
                         <span class="text-lg text-white">D) Crescimento pessoal</span>
                     </div>
@@ -441,7 +443,48 @@
         let answers = {};
         const totalQuestions = 7;
 
-        // Quiz functionality
+        // Mapeamento das perguntas e respostas
+        const questionTexts = {
+            1: "Qual é a sua maior preocupação financeira atualmente?",
+            2: "Qual é o seu status de relacionamento?", 
+            3: "Como você costuma lidar com mudanças importantes na vida?",
+            4: "Como você prefere tomar decisões importantes?",
+            5: "O que mais te motiva a buscar prosperidade financeira?",
+            6: "Qual é o seu maior medo em relação ao futuro?",
+            7: "Em que área da vida você mais deseja crescimento?"
+        };
+
+        const answerTexts = {
+            "saving": "A) Não consigo poupar dinheiro",
+            "debt": "B) Estou endividado(a)",
+            "income": "C) Preciso aumentar minha renda", 
+            "investment": "D) Não sei onde investir",
+            "single": "A) Solteiro(a)",
+            "relationship": "B) Em um relacionamento",
+            "married": "C) Casado(a)",
+            "complicated": "D) É complicado",
+            "embrace": "A) Abraço com entusiasmo",
+            "cautious": "B) Analiso cuidadosamente antes de agir",
+            "resist": "C) Costumo resistir e me adapto lentamente",
+            "flexible": "D) Fluo naturalmente com as mudanças",
+            "logical": "A) Baseado em dados e análises",
+            "intuitive": "B) Sigo minha intuição e sinais do universo",
+            "advice": "C) Peço conselhos de pessoas próximas",
+            "mixed": "D) Combino lógica e intuição",
+            "freedom": "A) Liberdade e independência",
+            "family": "B) Cuidar da família",
+            "security": "C) Segurança e estabilidade",
+            "dreams": "D) Realizar sonhos e experiências",
+            "fear_failure": "A) Não conseguir alcançar meus objetivos",
+            "fear_loneliness": "B) Ficar sozinho(a)",
+            "fear_poverty": "C) Problemas financeiros", 
+            "fear_health": "D) Problemas de saúde",
+            "career": "A) Carreira profissional",
+            "love": "B) Relacionamentos amorosos",
+            "spiritual": "C) Desenvolvimento espiritual",
+            "personal": "D) Crescimento pessoal"
+        };
+
         function updateProgress() {
             const progress = ((currentQuestion - 1) / totalQuestions) * 100;
             document.getElementById('progress-bar').style.width = progress + '%';
@@ -483,11 +526,14 @@
         function collectAnswers() {
             const formattedAnswers = [];
             
-            document.querySelectorAll('.answer-option.selected').forEach(option => {
-                const question = option.getAttribute('data-question');
-                const answer = option.getAttribute('data-answer');
-                formattedAnswers.push(`${question} - ${answer}`);
-            });
+            // Percorre as respostas na ordem das questões
+            for (let i = 1; i <= totalQuestions; i++) {
+                if (answers[i]) {
+                    const question = questionTexts[i];
+                    const answer = answerTexts[answers[i]];
+                    formattedAnswers.push(`${question} - ${answer}`);
+                }
+            }
             
             return formattedAnswers;
         }
@@ -527,8 +573,6 @@
                 option.addEventListener('click', function() {
                     const questionNumber = this.closest('.question-card').getAttribute('data-question');
                     const value = this.getAttribute('data-value');
-                    const question = this.getAttribute('data-question');
-                    const answer = this.getAttribute('data-answer');
                     
                     // Remove previous selection for this question
                     this.closest('.question-card').querySelectorAll('.answer-option').forEach(opt => {
@@ -539,11 +583,7 @@
                     this.classList.add('selected');
                     
                     // Store answer
-                    answers[questionNumber] = {
-                        value: value,
-                        question: question,
-                        answer: answer
-                    };
+                    answers[questionNumber] = value;
                     
                     // Auto advance after selection
                     setTimeout(() => {
