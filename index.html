@@ -14,7 +14,7 @@
             min-height: 100vh;
         }
         .mystical-bg {
-            background: linear-gradient(135deg, rgba(26, 26, 46, 0.9), rgba(22, 33, 62, 0.8)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="stars" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="%23ffffff" opacity="0.3"><animate attributeName="opacity" values="0.1;0.8;0.1" dur="3s" repeatCount="indefinite"/></circle><circle cx="80" cy="40" r="0.5" fill="%23ffd700" opacity="0.5"><animate attributeName="opacity" values="0.2;0.9;0.2" dur="2s" repeatCount="indefinite"/></circle><circle cx="50" cy="80" r="0.8" fill="%23ff69b4" opacity="0.4"><animate attributeName="opacity" values="0.1;0.7;0.1" dur="4s" repeatCount="indefinite"/></circle></pattern></defs><rect width="100%" height="100%" fill="url(%23stars)"/></svg>');
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.9), rgba(22, 33, 62, 0.8)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="stars" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="%23ffffff" opacity="0.3"><animate attributeName="opacity" values="0.1;0.8;0.1" dur="3s" repeatCount="indefinite"/></circle><circle cx="80" cy="40" r="0.5" fill="%23ffd700" opacity="0.5"><animate attributeName="opacity" values="0.2;0.9;0.2" dur="2s" repeatCount="indefinite"/></circle><circle cx="50" cy="80" r="0.8" fill="%23ff69b4" opacity="0.4"><animate attributeName="opacity" values="0.1;0.7;0.1" dur="4s" repeatCount="indefinite"/></circle></pattern></defs><rect width="100%25" height="100%25" fill="url(%23stars)"/></svg>');
         }
         .gradient-text {
             background: linear-gradient(45deg, #ff69b4, #ffd700, #ff6b35);
@@ -53,265 +53,197 @@
             from { transform: scale(0.95); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
         }
-        .pulse-slow {
-            animation: pulse-slow 2s infinite;
-        }
-        @keyframes pulse-slow {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-        .hidden { display: none; }
-        
-        /* Responsividade */
-        @media (max-width: 768px) {
-            .card-mystical { margin: 1rem; }
+        @keyframes shootingStar {
+            to {
+                transform: translateX(100vw) translateY(-50vh);
+                opacity: 0;
+            }
         }
     </style>
 </head>
-<body class="mystical-bg min-h-screen">
-    <!-- Landing Page -->
-    <div id="landing-page" class="min-h-screen flex flex-col items-center justify-center p-4">
-        <div class="max-w-4xl w-full text-center">
-            <!-- Hero Card -->
-            <div class="card-mystical rounded-3xl p-8 glow mb-8 fade-in">
-                <!-- Background Image with Overlays -->
-                <div class="relative h-80 mb-8 overflow-hidden rounded-2xl">
-                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3" 
-                         alt="Mystical Background" 
-                         class="w-full h-full object-cover opacity-70">
-                    
-                    <!-- Gradient Overlay -->
-                    <div class="absolute inset-0 bg-gradient-to-r from-purple-900/80 via-pink-900/60 to-yellow-900/80"></div>
-                    
-                    <!-- Zodiac Signs Floating -->
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <!-- Top Left -->
-                        <div class="absolute top-4 left-4 text-2xl text-yellow-300 pulse-slow">♈</div>
-                        <div class="absolute top-8 right-8 text-xl text-pink-300 pulse-slow" style="animation-delay: 0.5s;">♉</div>
-                        <div class="absolute top-16 left-16 text-lg text-blue-300 pulse-slow" style="animation-delay: 1s;">♊</div>
-                        
-                        <!-- Center Elements -->
-                        <div class="absolute top-20 right-20 text-2xl text-purple-300 pulse-slow" style="animation-delay: 1.5s;">♋</div>
-                        <div class="absolute bottom-20 left-8 text-xl text-green-300 pulse-slow" style="animation-delay: 2s;">♌</div>
-                        <div class="absolute bottom-8 right-12 text-2xl text-orange-300 pulse-slow" style="animation-delay: 2.5s;">♍</div>
-                        
-                        <!-- Floating Hearts and Stars -->
-                        <div class="absolute top-12 left-1/3 text-xl text-pink-400 pulse-slow" style="animation-delay: 0.3s;">💖</div>
-                        <div class="absolute top-1/4 right-1/4 text-lg text-yellow-400 pulse-slow" style="animation-delay: 0.8s;">⭐</div>
-                        <div class="absolute bottom-1/4 left-1/4 text-xl text-purple-400 pulse-slow" style="animation-delay: 1.2s;">🔮</div>
-                        <div class="absolute bottom-12 right-1/3 text-lg text-yellow-400 pulse-slow" style="animation-delay: 1.6s;">✨</div>
-                        
-                        <!-- Money and Prosperity Symbols -->
-                        <div class="absolute top-1/3 left-1/2 transform -translate-x-1/2 text-2xl text-yellow-400 pulse-slow" style="animation-delay: 0.2s;">💰</div>
-                        <div class="absolute bottom-1/3 right-1/2 transform translate-x-1/2 text-xl text-green-400 pulse-slow" style="animation-delay: 0.7s;">💎</div>
-                        
-                        <!-- Central Title -->
-                        <div class="z-10 text-center">
-                            <h1 class="text-4xl md:text-6xl font-bold gradient-text mb-4 zoom-in">
-                                Descubra Seus Caminhos<br>
-                                <span class="text-3xl md:text-5xl">Astrológicos</span><br>
-                                <span class="text-3xl md:text-5xl">para Prosperidade</span>
-                            </h1>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Subtitle -->
-                <div class="fade-in" style="animation-delay: 0.2s;">
-                    <p class="text-xl md:text-2xl text-gray-300 mb-6">
-                        Um teste revelador que desvenda seus bloqueios energéticos no 
-                        <span class="text-yellow-400 font-semibold">dinheiro</span> e 
-                        <span class="text-pink-400 font-semibold">amor</span>, baseado na sua energia astrológica pessoal
-                    </p>
-                </div>
-                
-                <!-- Social Proof -->
-                <div class="flex justify-center items-center mb-8 fade-in" style="animation-delay: 0.4s;">
-                    <div class="flex text-yellow-400 text-xl mr-3">
-                        ⭐⭐⭐⭐⭐
-                    </div>
-                    <span class="text-gray-300">Avaliado por <strong>12.847 pessoas</strong></span>
-                </div>
-                
-                <!-- CTA Button -->
-                <div class="fade-in" style="animation-delay: 0.6s;">
-                    <button onclick="startQuiz()" 
-                            class="btn-primary text-white font-bold py-4 px-8 rounded-full text-xl hover:scale-105 transition-transform duration-300 glow pulse-slow">
-                        👑 DESCOBRIR MEUS CAMINHOS
-                    </button>
-                </div>
-                
-                <!-- Bottom Info -->
-                <div class="flex flex-col md:flex-row justify-center items-center space-y-2 md:space-y-0 md:space-x-6 mt-6 text-gray-400 fade-in" style="animation-delay: 0.8s;">
-                    <div class="flex items-center">
-                        <span class="w-2 h-2 bg-pink-500 rounded-full mr-2"></span>
-                        <span>Leva apenas 3 minutos</span>
-                    </div>
-                    <div class="flex items-center">
-                        <span class="w-2 h-2 bg-yellow-500 rounded-full mr-2"></span>
-                        <span>🎁 Resultado + Brinde Exclusivo</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<body class="mystical-bg text-white">
 
-    <!-- Quiz Container -->
-    <div id="quiz-container" class="hidden min-h-screen p-4">
-        <div class="max-w-3xl mx-auto">
-            <!-- Progress Bar -->
-            <div class="card-mystical rounded-lg p-4 mb-8">
-                <div class="flex justify-between text-sm text-gray-300 mb-2">
-                    <span>Pergunta <span id="current-question">1</span> de 7</span>
-                    <span><span id="progress-percentage">14</span>%</span>
-                </div>
-                <div class="w-full bg-gray-700 rounded-full h-3">
-                    <div id="progress-bar" class="progress-bar h-3 rounded-full transition-all duration-500" style="width: 14%"></div>
-                </div>
+    <!-- Página Inicial -->
+    <div id="landing-page" class="min-h-screen flex items-center justify-center py-12 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="mb-8">
+                <img src="https://cdn1.genspark.ai/user-upload-image/4_generated/c344163e-cff2-4c2a-b362-9687847fc2d0" 
+                     alt="Mulher Mística Astrologia" 
+                     class="w-full max-w-2xl mx-auto rounded-lg shadow-2xl glow">
             </div>
             
-            <!-- Question Container -->
-            <div class="card-mystical rounded-2xl p-8 glow">
-                <div id="question-content" class="fade-in">
-                    <!-- Questions will be dynamically loaded here -->
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                Descubra Seus Caminhos <span class="gradient-text">Astrológicos</span><br>
+                para <span class="gradient-text">Prosperidade</span>
+            </h1>
+            
+            <p class="text-xl md:text-2xl mb-8 text-gray-300 max-w-3xl mx-auto">
+                Um teste revelador que desvenda seus bloqueios energéticos no <strong>dinheiro e amor</strong>, 
+                baseado na sua energia astrológica pessoal
+            </p>
+            
+            <div class="mb-8">
+                <div class="flex items-center justify-center space-x-2 text-yellow-400 mb-4">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <span class="ml-2 text-gray-300">Avaliado por <strong>12.847 pessoas</strong></span>
+                </div>
+            </div>
+
+            <button onclick="startQuiz()" class="btn-primary text-white text-xl font-bold py-4 px-12 rounded-full hover:transform hover:scale-105 transition duration-300 shadow-lg">
+                <i class="fas fa-magic mr-2"></i>
+                DESCOBRIR MEUS CAMINHOS
+            </button>
+            
+            <p class="mt-4 text-sm text-gray-400">
+                ⏱️ Leva apenas 3 minutos • 🎁 Resultado + Brinde Exclusivo
+            </p>
+        </div>
+    </div>
+
+    <!-- Quiz -->
+    <div id="quiz-container" class="hidden min-h-screen py-8 px-4">
+        <div class="max-w-3xl mx-auto">
+            <!-- Barra de Progresso -->
+            <div class="mb-8">
+                <div class="bg-gray-700 rounded-full h-2">
+                    <div id="progress-bar" class="progress-bar h-2 rounded-full transition-all duration-300" style="width: 14.3%"></div>
+                </div>
+                <div class="text-center mt-2 text-gray-300">
+                    Pergunta <span id="current-question">1</span> de 7
+                </div>
+            </div>
+
+            <!-- Perguntas -->
+            <div id="question-container" class="card-mystical rounded-xl p-8 text-center fade-in">
+                <div id="question-content">
+                    <!-- Conteúdo da pergunta será inserido aqui -->
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Email Gate -->
-    <div id="email-gate" class="hidden min-h-screen flex items-center justify-center p-4">
-        <div class="max-w-2xl w-full">
-            <div class="card-mystical rounded-3xl p-8 glow text-center fade-in">
-                <!-- Gift Icon -->
-                <div class="text-6xl mb-6 zoom-in">🎁</div>
-                
-                <!-- Title -->
-                <h2 class="text-3xl md:text-4xl font-bold gradient-text mb-6">
-                    Seu Mapa Astrológico Está Quase Pronto!
-                </h2>
-                
-                <!-- Description -->
-                <p class="text-xl text-gray-300 mb-8">
-                    Digite seu melhor e-mail para receber seu 
-                    <strong class="gradient-text">Diagnóstico Completo + Kit de Prosperidade 2025</strong> 
-                    totalmente GRÁTIS
-                </p>
-                
-                <!-- Urgency Counter -->
-                <div class="bg-red-600 text-white px-4 py-2 rounded-lg inline-block mb-6 pulse-slow">
-                    <span class="font-bold">⏰ Apenas <span id="countdown">47</span> pessoas serão atendidas hoje!</span>
+    <!-- Tela de Captura de Email -->
+    <div id="email-gate" class="hidden min-h-screen flex items-center justify-center py-12 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="card-mystical rounded-xl p-8 md:p-12 zoom-in">
+                <div class="mb-6">
+                    <i class="fas fa-gift text-6xl text-yellow-400 mb-4"></i>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                        🎯 Seu Resultado Personalizado + <span class="gradient-text">Brinde Exclusivo</span>
+                    </h2>
                 </div>
                 
-                <!-- Email Form -->
-                <form id="email-form" class="max-w-md mx-auto mb-6">
-                    <div class="mb-4">
-                        <input type="email" 
-                               id="email-input" 
-                               placeholder="Seu melhor e-mail aqui..." 
-                               class="w-full p-4 text-lg rounded-lg bg-white/10 border border-pink-500 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition"
-                               required>
+                <div class="bg-gradient-to-r from-yellow-400 to-orange-500 text-black p-4 rounded-lg mb-6">
+                    <h3 class="text-xl font-bold mb-2">🎁 OFERTA EXCLUSIVA - APENAS HOJE!</h3>
+                    <p class="font-bold">Kit de Prosperidade Astrológica 2025</p>
+                    <p><span class="line-through">De R$ 297</span> <strong class="text-2xl">GRÁTIS</strong></p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-8 text-left">
+                    <div>
+                        <h4 class="font-bold text-lg mb-3 text-center">📊 Seu Resultado Inclui:</h4>
+                        <ul class="space-y-2">
+                            <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Análise completa do seu perfil</li>
+                            <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Bloqueios específicos identificados</li>
+                            <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Plano de ação personalizado</li>
+                            <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Dicas exclusivas para seu signo</li>
+                        </ul>
                     </div>
-                    
-                    <button type="submit" 
-                            class="btn-primary w-full py-4 px-6 rounded-lg text-xl font-bold text-white hover:scale-105 transition-transform duration-300 glow pulse-slow">
-                        ✨ RECEBER RESULTADO + KIT GRÁTIS ✨
-                    </button>
+                    <div>
+                        <h4 class="font-bold text-lg mb-3 text-center">🎁 Kit Grátis Inclui:</h4>
+                        <ul class="space-y-2">
+                            <li><i class="fas fa-star text-yellow-400 mr-2"></i>Calendário Lunar 2025</li>
+                            <li><i class="fas fa-star text-yellow-400 mr-2"></i>12 Rituais de Abundância</li>
+                            <li><i class="fas fa-star text-yellow-400 mr-2"></i>Planilha Financeira Astrológica</li>
+                            <li><i class="fas fa-star text-yellow-400 mr-2"></i>E-book de 25 páginas</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-red-600 text-white p-3 rounded-lg mb-6">
+                    ⚠️ <strong>ATENÇÃO:</strong> Restam apenas <span id="countdown">47</span> kits disponíveis!
+                </div>
+
+                <form id="email-form" class="mb-6">
+                    <div class="max-w-md mx-auto">
+                        <label class="block text-left mb-2 font-semibold">📧 Digite seu melhor email:</label>
+                        <input type="email" id="email-input" required 
+                               class="w-full p-4 rounded-lg text-black text-center text-lg font-semibold" 
+                               placeholder="seu@email.com">
+                        <button type="submit" class="btn-primary w-full mt-4 text-white text-xl font-bold py-4 rounded-lg hover:transform hover:scale-105 transition duration-300">
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            RECEBER RESULTADO + KIT GRÁTIS
+                        </button>
+                    </div>
                 </form>
-                
-                <!-- Security Note -->
-                <p class="text-sm text-gray-400">
-                    🔒 Seus dados estão 100% seguros. Não enviamos spam.
+
+                <p class="text-xs text-gray-400">
+                    🔒 Seus dados estão seguros conosco. Não enviamos spam.
                 </p>
             </div>
         </div>
     </div>
 
-    <!-- Confirmation Page -->
-    <div id="confirmation" class="hidden min-h-screen flex items-center justify-center p-4">
-        <div class="max-w-3xl w-full">
-            <div class="card-mystical rounded-3xl p-8 glow text-center fade-in">
-                <!-- Success Icon -->
-                <div class="text-6xl mb-6 zoom-in">✅</div>
-                
-                <!-- Title -->
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
-                    Resultado e Kit Enviados!
-                </h2>
-                
-                <!-- Confirmation Message -->
-                <p class="text-xl text-gray-300 mb-6">
-                    Seu mapa astrológico personalizado + 
-                    <strong class="gradient-text">Kit de Prosperidade 2025</strong> 
-                    foram enviados para:
-                </p>
-                
-                <!-- Email Display -->
-                <div class="card-mystical rounded-lg p-4 mb-8">
-                    <p id="confirmed-email" class="text-xl font-bold gradient-text"></p>
+    <!-- Tela de Confirmação -->
+    <div id="confirmation" class="hidden min-h-screen flex items-center justify-center py-12 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="card-mystical rounded-xl p-8 md:p-12 zoom-in">
+                <div class="mb-6">
+                    <i class="fas fa-check-circle text-6xl text-green-400 mb-4"></i>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                        ✅ <span class="gradient-text">Resultado e Kit Enviados!</span>
+                    </h2>
                 </div>
                 
-                <!-- Next Steps -->
-                <div class="text-left mb-8 card-mystical rounded-lg p-6">
-                    <h3 class="text-2xl font-bold gradient-text mb-4 text-center">📧 PRÓXIMOS PASSOS:</h3>
-                    <div class="space-y-3">
-                        <div class="flex items-center text-lg text-gray-300">
-                            <span class="text-2xl mr-3">1️⃣</span>
-                            <span>Verifique sua caixa de entrada</span>
-                        </div>
-                        <div class="flex items-center text-lg text-gray-300">
-                            <span class="text-2xl mr-3">2️⃣</span>
-                            <span>Se não encontrar, olhe no spam</span>
-                        </div>
-                        <div class="flex items-center text-lg text-gray-300">
-                            <span class="text-2xl mr-3">3️⃣</span>
-                            <span>Baixe seu kit exclusivo</span>
-                        </div>
-                        <div class="flex items-center text-lg text-gray-300">
-                            <span class="text-2xl mr-3">4️⃣</span>
-                            <span>Implemente as estratégias</span>
-                        </div>
-                    </div>
+                <p class="text-xl mb-6 text-gray-300">
+                    Seu resultado personalizado + <strong>Kit de Prosperidade Astrológica 2025</strong> 
+                    foram enviados para: <br>
+                    <strong class="text-yellow-400" id="confirmed-email"></strong>
+                </p>
+
+                <div class="bg-blue-600 p-4 rounded-lg mb-6">
+                    <h3 class="font-bold mb-2">📧 PRÓXIMOS PASSOS:</h3>
+                    <ol class="text-left max-w-md mx-auto space-y-2">
+                        <li>1️⃣ Verifique sua caixa de entrada</li>
+                        <li>2️⃣ Se não encontrar, olhe no spam</li>
+                        <li>3️⃣ Baixe seu kit exclusivo</li>
+                        <li>4️⃣ Implemente as estratégias</li>
+                    </ol>
                 </div>
 
-                <!-- Direct Access -->
-                <div class="card-mystical rounded-lg p-6 mb-8">
-                    <h3 class="text-2xl font-bold gradient-text mb-4">🎁 ACESSE SEU KIT AGORA:</h3>
-                    <p class="text-lg text-gray-300 mb-4">
-                        Não quer esperar o email? Acesse diretamente seu Kit de Prosperidade:
-                    </p>
-                    <button class="btn-secondary py-3 px-6 rounded-lg text-white font-bold text-lg hover:scale-105 transition-transform duration-300">
-                        🚀 BAIXAR KIT AGORA
+                <div class="bg-gradient-to-r from-yellow-400 to-orange-500 text-black p-4 rounded-lg mb-6">
+                    <h3 class="text-xl font-bold mb-2">🎁 ACESSE SEU KIT AGORA:</h3>
+                    <p class="mb-4">Não quer esperar o email? Acesse diretamente seu Kit de Prosperidade:</p>
+                    <button onclick="window.open('https://ycjrxnmf.gensparkspace.com/', '_blank')" class="btn-primary text-white text-xl font-bold py-4 px-12 rounded-full hover:transform hover:scale-105 transition duration-300 shadow-lg">
+                        <i class="fas fa-download mr-2"></i>
+                        ACESSAR MEU KIT AGORA
                     </button>
                 </div>
 
-                <!-- Upsell Section -->
-                <div class="bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl p-8">
-                    <h3 class="text-2xl md:text-3xl font-bold text-white mb-4">🚀 Quer Turbinar Seus Resultados?</h3>
-                    <p class="text-lg text-white mb-6">
-                        Receba previsões astrológicas <strong>diárias e personalizadas</strong> no seu WhatsApp 
-                        para nunca mais perder uma oportunidade!
-                    </p>
+                <div class="mb-6 p-6 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg">
+                    <h3 class="text-2xl font-bold mb-3">🚀 Quer Turbinar Seus Resultados?</h3>
+                    <p class="mb-4">Receba previsões astrológicas <strong>diárias e personalizadas</strong> no seu WhatsApp para nunca mais perder uma oportunidade!</p>
                     
-                    <!-- Pricing -->
-                    <div class="mb-6">
-                        <span class="line-through text-gray-200 text-xl">R$ 97,90</span>
-                        <span class="text-4xl font-bold text-yellow-300 mx-3">R$ 9,90</span>
-                        <span class="bg-red-600 text-white px-3 py-1 rounded-lg text-lg font-bold">90% OFF</span>
+                    <div class="flex items-center justify-center mb-4">
+                        <span class="text-sm line-through mr-2">R$ 97,90</span>
+                        <span class="text-3xl font-bold text-yellow-400">R$ 9,90</span>
+                        <span class="ml-2 bg-red-500 px-2 py-1 rounded text-sm">90% OFF</span>
                     </div>
-                    
-                    <!-- CTA Button -->
-                    <a href="https://certidaoastrologica.com.br/astroguia2-0/" 
-                       target="_blank" 
-                       class="inline-block bg-white text-purple-600 hover:bg-gray-100 py-4 px-8 rounded-lg font-bold text-xl transition-colors duration-300">
-                        QUERO PREVISÕES DIÁRIAS
-                    </a>
-                    
-                    <!-- Guarantee -->
-                    <p class="text-sm text-gray-200 mt-4">
-                        ⚡ Oferta especial por tempo limitado • Garantia de 30 dias
-                    </p>
                 </div>
+
+                <a href="https://certidaoastrologica.com.br/astroguia2-0/" target="_blank" 
+                   class="btn-secondary text-white text-xl font-bold py-4 px-12 rounded-full hover:transform hover:scale-105 transition duration-300 shadow-lg inline-block mb-4">
+                    <i class="fas fa-whatsapp mr-2"></i>
+                    QUERO PREVISÕES DIÁRIAS
+                </a>
+
+                <p class="text-sm text-gray-400">
+                    ⚡ Oferta especial por tempo limitado • Garantia de 30 dias
+                </p>
             </div>
         </div>
     </div>
@@ -323,15 +255,15 @@
                 options: [
                     { text: "🤑 Não consigo poupar dinheiro", value: "saving" },
                     { text: "💸 Tenho medo de investir e perder", value: "fear" },
-                    { text: "⚡ Minha renda nunca é suficiente", value: "income" },
-                    { text: "🛒 Gasto mais do que ganho", value: "spending" }
+                    { text: "✅ Minha renda nunca é suficiente", value: "income" },
+                    { text: "💎 Gasto mais do que ganho", value: "spending" }
                 ]
             },
             {
                 question: "Como você se sente em relação ao amor atualmente?",
                 options: [
                     { text: "💔 Estou sozinho(a) e não encontro ninguém", value: "single" },
-                    { text: "🌪 Tenho relacionamentos, mas não duram", value: "unstable" },
+                    { text: "🔄 Tenho relacionamentos, mas não duram", value: "unstable" },
                     { text: "😴 Estou em um relacionamento, mas falta paixão", value: "routine" },
                     { text: "😰 Tenho medo de me entregar completamente", value: "fear_love" }
                 ]
@@ -342,7 +274,7 @@
                     { text: "🌪️ Fase de muitas mudanças e incertezas", value: "change" },
                     { text: "⚖️ Buscando mais estabilidade", value: "stability" },
                     { text: "🚀 Pronto(a) para grandes realizações", value: "achievement" },
-                    { text: "🔒 Sentindo que estou estagnado(a)", value: "stuck" }
+                    { text: "😑 Sentindo que estou estagnado(a)", value: "stuck" }
                 ]
             },
             {
@@ -358,8 +290,8 @@
                 question: "O que você acredita que mais te bloqueia na vida?",
                 options: [
                     { text: "😨 Medo do fracasso", value: "fear_failure" },
-                    { text: "😞 Falta de autoconfiança", value: "confidence" },
-                    { text: "🏠 Padrões familiares limitantes", value: "family" },
+                    { text: "😔 Falta de autoconfiança", value: "confidence" },
+                    { text: "👪 Padrões familiares limitantes", value: "family" },
                     { text: "🤷 Não sei ao certo o que quero", value: "direction" }
                 ]
             },
@@ -368,28 +300,24 @@
                 options: [
                     { text: "💼 Carreira e realização profissional", value: "career" },
                     { text: "❤️ Relacionamentos e vida amorosa", value: "love_area" },
-                    { text: "💰 Dinheiro e abundância material", value: "money" },
-                    { text: "💚 Saúde e bem-estar físico", value: "health" },
-                    { text: "🧘 Crescimento espiritual e autoconhecimento", value: "spiritual" },
-                    { text: "🛡️ Segurança e estabilidade emocional", value: "security" }
+                    { text: "💰 Dinheiro e abundância material", value: "money_area" },
+                    { text: "🌟 Autoestima e desenvolvimento pessoal", value: "self" }
                 ]
             },
             {
-                question: "Qual aspecto da sua personalidade você quer transformar?",
+                question: "O que você mais busca para 2025?",
                 options: [
-                    { text: "🗣 Comunicação e expressão", value: "communication" },
-                    { text: "🎨 Criatividade e inspiração", value: "creativity" },
-                    { text: "💪 Disciplina e foco", value: "discipline" },
-                    { text: "✨ Autoconfiança e autoestima", value: "confidence_transform" },
-                    { text: "⏰ Paciência e tranquilidade", value: "patience" },
-                    { text: "🦁 Coragem para tomar decisões", value: "courage" }
+                    { text: "🏦 Estabilidade financeira e segurança", value: "security" },
+                    { text: "💕 Um amor verdadeiro e duradouro", value: "true_love" },
+                    { text: "📈 Crescimento profissional e sucesso", value: "growth" },
+                    { text: "🧘 Paz interior e equilíbrio", value: "balance" }
                 ]
             }
         ];
 
         let currentQuestionIndex = 0;
         let answers = [];
-        let countdown = Math.floor(Math.random() * 10) + 40; // Número aleatório entre 40-49
+        let countdown = 47;
 
         function startQuiz() {
             document.getElementById('landing-page').classList.add('hidden');
@@ -417,7 +345,6 @@
             const progress = ((index + 1) / 7) * 100;
             document.getElementById('progress-bar').style.width = progress + '%';
             document.getElementById('current-question').textContent = index + 1;
-            document.getElementById('progress-percentage').textContent = Math.round(progress);
         }
 
         function selectAnswer(value) {
@@ -475,47 +402,43 @@
                     const formattedAnswers = [];
                     const questionTexts = [
                         "Qual é a sua maior preocupação financeira atualmente?",
-                        "Como você se sente em relação ao amor atualmente?", 
+                        "Como você se sente em relação ao amor atualmente?",
                         "Qual momento da vida você está vivendo?",
                         "Como você toma decisões financeiras importantes?",
                         "O que você acredita que mais te bloqueia na vida?",
                         "Em qual área você sente que precisa de mais energia?",
-                        "Qual aspecto da sua personalidade você quer transformar?"
+                        "O que você mais busca para 2025?"
                     ];
                     
                     const answerTexts = {
                         "saving": "🤑 Não consigo poupar dinheiro",
-                        "fear": "💸 Tenho medo de investir e perder", 
-                        "income": "⚡ Minha renda nunca é suficiente",
-                        "spending": "🛒 Gasto mais do que ganho",
+                        "fear": "💸 Tenho medo de investir e perder",
+                        "income": "✅ Minha renda nunca é suficiente",
+                        "spending": "💎 Gasto mais do que ganho",
                         "single": "💔 Estou sozinho(a) e não encontro ninguém",
-                        "unstable": "🌪 Tenho relacionamentos, mas não duram",
+                        "unstable": "🔄 Tenho relacionamentos, mas não duram",
                         "routine": "😴 Estou em um relacionamento, mas falta paixão",
                         "fear_love": "😰 Tenho medo de me entregar completamente",
                         "change": "🌪️ Fase de muitas mudanças e incertezas",
                         "stability": "⚖️ Buscando mais estabilidade",
                         "achievement": "🚀 Pronto(a) para grandes realizações",
-                        "stuck": "🔒 Sentindo que estou estagnado(a)",
+                        "stuck": "😑 Sentindo que estou estagnado(a)",
                         "intuitive": "🔮 Sigo minha intuição e sentimentos",
                         "analytical": "📊 Analiso todos os dados possíveis",
                         "advice": "👥 Peço conselhos para várias pessoas",
                         "procrastinate": "⏳ Evito tomar decisões até ser obrigado(a)",
                         "fear_failure": "😨 Medo do fracasso",
-                        "confidence": "😞 Falta de autoconfiança",
-                        "family": "🏠 Padrões familiares limitantes",
+                        "confidence": "😔 Falta de autoconfiança",
+                        "family": "👪 Padrões familiares limitantes",
                         "direction": "🤷 Não sei ao certo o que quero",
                         "career": "💼 Carreira e realização profissional",
                         "love_area": "❤️ Relacionamentos e vida amorosa",
-                        "money": "💰 Dinheiro e abundância material",
-                        "health": "💚 Saúde e bem-estar físico",
-                        "spiritual": "🧘 Crescimento espiritual e autoconhecimento",
-                        "security": "🛡️ Segurança e estabilidade emocional",
-                        "communication": "🗣 Comunicação e expressão",
-                        "creativity": "🎨 Criatividade e inspiração",
-                        "discipline": "💪 Disciplina e foco",
-                        "confidence_transform": "✨ Autoconfiança e autoestima",
-                        "patience": "⏰ Paciência e tranquilidade",
-                        "courage": "🦁 Coragem para tomar decisões"
+                        "money_area": "💰 Dinheiro e abundância material",
+                        "self": "🌟 Autoestima e desenvolvimento pessoal",
+                        "security": "🏦 Estabilidade financeira e segurança",
+                        "true_love": "💕 Um amor verdadeiro e duradouro",
+                        "growth": "📈 Crescimento profissional e sucesso",
+                        "balance": "🧘 Paz interior e equilíbrio"
                     };
                     
                     for (let i = 0; i < answers.length && i < questionTexts.length; i++) {
@@ -559,6 +482,34 @@
                 sendDataToWebhook(email, formattedAnswers);
             }
         });
+
+        // Adicionar alguns efeitos visuais
+        document.addEventListener('DOMContentLoaded', function() {
+            // Efeito de estrelas cadentes ocasional
+            setInterval(() => {
+                if (Math.random() < 0.1) { // 10% de chance a cada intervalo
+                    createShootingStar();
+                }
+            }, 3000);
+        });
+
+        function createShootingStar() {
+            const star = document.createElement('div');
+            star.style.position = 'fixed';
+            star.style.top = Math.random() * 100 + 'vh';
+            star.style.left = '-10px';
+            star.style.width = '2px';
+            star.style.height = '2px';
+            star.style.background = '#ffd700';
+            star.style.borderRadius = '50%';
+            star.style.zIndex = '1000';
+            star.style.animation = 'shootingStar 2s linear forwards';
+            document.body.appendChild(star);
+
+            setTimeout(() => {
+                star.remove();
+            }, 2000);
+        }
     </script>
 </body>
 </html>
