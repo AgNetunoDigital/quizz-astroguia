@@ -54,37 +54,12 @@
         .mystical-button:hover::before {
             left: 100%;
         }
-        .question-card {
-            transition: all 0.3s ease;
-            opacity: 0;
-            transform: translateY(20px);
-            display: none;
+        .hero-image {
+            background: url('https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=400&fit=crop&crop=center') center/cover;
+            background-image: linear-gradient(135deg, rgba(138, 43, 226, 0.8), rgba(75, 0, 130, 0.6)), 
+                              url('https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=400&fit=crop&crop=center');
         }
-        .question-card.active {
-            opacity: 1;
-            transform: translateY(0);
-            display: block;
-        }
-        .answer-option {
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        .answer-option:hover {
-            transform: translateX(5px);
-            background: rgba(255, 255, 255, 0.1);
-        }
-        .answer-option.selected {
-            background: linear-gradient(135deg, rgba(138, 43, 226, 0.3), rgba(75, 0, 130, 0.3));
-            border-color: #8A2BE2;
-            transform: translateX(5px);
-        }
-        .progress-bar {
-            background: linear-gradient(90deg, #8A2BE2, #4B0082);
-            transition: width 0.5s ease;
-        }
-        .zodiac-symbol {
-            font-size: 2rem;
-            opacity: 0.3;
+        .floating {
             animation: float 3s ease-in-out infinite;
         }
         @keyframes float {
@@ -95,286 +70,170 @@
             animation: pulse 2s infinite;
         }
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(138, 43, 226, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(138, 43, 226, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(138, 43, 226, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(236, 72, 153, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(236, 72, 153, 0); }
         }
-        .star-field::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.3), transparent),
-                radial-gradient(1px 1px at 40px 70px, rgba(255,255,255,0.2), transparent),
-                radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.2), transparent),
-                radial-gradient(2px 2px at 130px 80px, rgba(255,255,255,0.3), transparent),
-                radial-gradient(1px 1px at 160px 30px, rgba(255,255,255,0.2), transparent);
-            background-repeat: repeat;
-            background-size: 200px 100px;
-            animation: sparkle 10s linear infinite;
-            pointer-events: none;
+        .hidden {
+            display: none;
         }
-        @keyframes sparkle {
-            from { transform: translateX(0); }
-            to { transform: translateX(200px); }
-        }
-        .email-input {
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(138, 43, 226, 0.3);
+        .quiz-option {
             transition: all 0.3s ease;
         }
-        .email-input:focus {
-            border-color: #8A2BE2;
-            box-shadow: 0 0 20px rgba(138, 43, 226, 0.3);
-            outline: none;
+        .quiz-option:hover {
+            transform: translateX(10px);
+            background: rgba(236, 72, 153, 0.2) !important;
         }
-        .result-card {
-            background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(75, 0, 130, 0.1));
-            border: 1px solid rgba(138, 43, 226, 0.3);
+        .progress-bar {
+            transition: width 0.5s ease;
         }
     </style>
 </head>
-<body class="mystical-bg star-field">
-    <div class="container mx-auto px-4 py-8 max-w-4xl">
-        <!-- Header -->
-        <div class="text-center mb-12">
-            <div class="zodiac-symbol mb-4">✨</div>
-            <h1 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">
-                Descubra Seus Caminhos Astrológicos para Prosperidade
-            </h1>
-            <p class="text-xl text-gray-300 mb-6">
-                Um quiz personalizado que revela como os astros podem guiar sua jornada
-            </p>
-            <div class="glass-effect rounded-lg p-6 cosmic-glow">
-                <p class="text-lg text-white">
-                    🎁 <strong>BÔNUS EXCLUSIVO:</strong> Ao finalizar, você receberá seu 
-                    <span class="gradient-text font-semibold">Kit de Prosperidade Astrológica 2025</span> 
-                    totalmente GRÁTIS!
-                </p>
-            </div>
-        </div>
-
-        <!-- Progress Bar -->
-        <div class="mb-8">
-            <div class="flex justify-between items-center mb-2">
-                <span class="text-sm text-gray-300">Progresso do Quiz</span>
-                <span class="text-sm text-gray-300" id="progress-text">0/7</span>
-            </div>
-            <div class="w-full bg-gray-700 rounded-full h-3">
-                <div class="progress-bar h-3 rounded-full" id="progress-bar" style="width: 0%"></div>
-            </div>
-        </div>
-
-        <!-- Quiz Container -->
-        <div id="quiz-container">
-            <!-- Question 1 -->
-            <div class="question-card glass-effect rounded-lg p-8 mb-6 active" data-question="1">
-                <h2 class="text-2xl font-bold text-white mb-6">
-                    <span class="gradient-text">1.</span> Qual é a sua maior preocupação financeira atualmente?
-                </h2>
-                <div class="space-y-4">
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="saving">
-                        <span class="text-2xl mr-3">🤑</span>
-                        <span class="text-lg text-white">A) Não consigo poupar dinheiro</span>
-                    </div>
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="debt">
-                        <span class="text-2xl mr-3">💳</span>
-                        <span class="text-lg text-white">B) Estou endividado(a)</span>
-                    </div>
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="income">
-                        <span class="text-2xl mr-3">📈</span>
-                        <span class="text-lg text-white">C) Preciso aumentar minha renda</span>
-                    </div>
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="investment">
-                        <span class="text-2xl mr-3">💎</span>
-                        <span class="text-lg text-white">D) Não sei onde investir</span>
-
-            <!-- Question 2 -->
-            <div class="question-card glass-effect rounded-lg p-8 mb-6" data-question="2">
-                <h2 class="text-2xl font-bold text-white mb-6">
-                    <span class="gradient-text">2.</span> Qual é o seu status de relacionamento?
-                </h2>
-                <div class="space-y-4">
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="single">
-                        <span class="text-2xl mr-3">💔</span>
-                        <span class="text-lg text-white">A) Solteiro(a)</span>
-                    </div>
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="relationship">
-                        <span class="text-2xl mr-3">💑</span>
-                        <span class="text-lg text-white">B) Em um relacionamento</span>
-                    </div>
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="married">
-                        <span class="text-2xl mr-3">💍</span>
-                        <span class="text-lg text-white">C) Casado(a)</span>
-                    </div>
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="complicated">
-                        <span class="text-2xl mr-3">🤷‍♀️</span>
-                        <span class="text-lg text-white">D) É complicado</span>
-          
-            <!-- Question 3 -->
-            <div class="question-card glass-effect rounded-lg p-8 mb-6" data-question="3">
-                <h2 class="text-2xl font-bold text-white mb-6">
-                    <span class="gradient-text">3.</span> Como você costuma lidar com mudanças importantes na vida?
-                </h2>
-                <div class="space-y-4">
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="embrace">
-                        <span class="text-2xl mr-3">🚀</span>
-                        <span class="text-lg text-white">A) Abraço com entusiasmo</span>
-                    </div>
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="cautious">
-                        <span class="text-2xl mr-3">🤔</span>
-                        <span class="text-lg text-white">B) Analiso cuidadosamente antes de agir</span>
-                    </div>
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="resist">
-                        <span class="text-2xl mr-3">😰</span>
-                        <span class="text-lg text-white">C) Costumo resistir e me adapto lentamente</span>
-                    </div>
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="flexible">
-                        <span class="text-2xl mr-3">🌊</span>
-                        <span class="text-lg text-white">D) Fluo naturalmente com as mudanças</span>
-                    <!-- Question 4 -->
-            <div class="question-card glass-effect rounded-lg p-8 mb-6" data-question="4">
-                <h2 class="text-2xl font-bold text-white mb-6">
-                    <span class="gradient-text">4.</span> Como você prefere tomar decisões importantes?
-                </h2>
-                <div class="space-y-4">
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="logical">
-                        <span class="text-2xl mr-3">📊</span>
-                        <span class="text-lg text-white">A) Baseado em dados e análises</span>
-                    </div>
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="intuitive">
-                        <span class="text-2xl mr-3">🔮</span>
-                        <span class="text-lg text-white">B) Sigo minha intuição e sinais do universo</span>
-                    </div>
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="advice">
-                        <span class="text-2xl mr-3">👥</span>
-                        <span class="text-lg text-white">C) Peço conselhos de pessoas próximas</span>
-                    </div>
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="mixed">
-                        <span class="text-2xl mr-3">⚖️</span>
-                        <span class="text-lg text-white">D) Combino lógica e intuição</span>
-           
-                        <!-- Question 5 -->
-            <div class="question-card glass-effect rounded-lg p-8 mb-6" data-question="5">
-                <h2 class="text-2xl font-bold text-white mb-6">
-                    <span class="gradient-text">5.</span> O que mais te motiva a buscar prosperidade financeira?
-                </h2>
-                <div class="space-y-4">
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="freedom">
-                        <span class="text-2xl mr-3">🆓</span>
-                        <span class="text-lg text-white">A) Liberdade e independência</span>
-                    </div>
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="family">
-                        <span class="text-2xl mr-3">👨‍👩‍👧‍👦</span>
-                        <span class="text-lg text-white">B) Cuidar da família</span>
-                    </div>
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="security">
-                        <span class="text-2xl mr-3">🛡️</span>
-                        <span class="text-lg text-white">C) Segurança e estabilidade</span>
-                    </div>
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="dreams">
-                        <span class="text-2xl mr-3">✨</span>
-                        <span class="text-lg text-white">D) Realizar sonhos e experiências</span>
-        
-            <!-- Question 6 -->
-            <div class="question-card glass-effect rounded-lg p-8 mb-6" data-question="6">
-                <h2 class="text-2xl font-bold text-white mb-6">
-                    <span class="gradient-text">6.</span> Qual é o seu maior medo em relação ao futuro?
-                </h2>
-                <div class="space-y-4">
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="fear_failure">
-                        <span class="text-2xl mr-3">😨</span>
-                        <span class="text-lg text-white">A) Não conseguir alcançar meus objetivos</span>
-                    </div>
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="fear_loneliness">
-                        <span class="text-2xl mr-3">😢</span>
-                        <span class="text-lg text-white">B) Ficar sozinho(a)</span>
-                    </div>
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="fear_poverty">
-                        <span class="text-2xl mr-3">💸</span>
-                        <span class="text-lg text-white">C) Problemas financeiros</span>
-                    </div>
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="fear_health">
-                        <span class="text-2xl mr-3">🏥</span>
-                        <span class="text-lg text-white">D) Problemas de saúde</span>
-       
-            <!-- Question 7 -->
-            <div class="question-card glass-effect rounded-lg p-8 mb-6" data-question="7">
-                <h2 class="text-2xl font-bold text-white mb-6">
-                    <span class="gradient-text">7.</span> Em que área da vida você mais deseja crescimento?
-                </h2>
-                <div class="space-y-4">
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="career">
-                        <span class="text-2xl mr-3">💼</span>
-                        <span class="text-lg text-white">A) Carreira profissional</span>
-                    </div>
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="love">
-                        <span class="text-2xl mr-3">❤️</span>
-                        <span class="text-lg text-white">B) Relacionamentos amorosos</span>
-                    </div>
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="spiritual">
-                        <span class="text-2xl mr-3">🧘‍♀️</span>
-                        <span class="text-lg text-white">C) Desenvolvimento espiritual</span>
-                    </div>
-                    <div class="answer-option glass-effect rounded-lg p-4 border border-gray-600" data-value="personal">
-                        <span class="text-2xl mr-3">🌟</span>
-                        <span class="text-lg text-white">D) Crescimento pessoal</span>
-   
-        <!-- Email Collection -->
-        <div id="email-section" class="glass-effect rounded-lg p-8 mb-6" style="display: none;">
-            <div class="text-center mb-6">
-                <div class="zodiac-symbol mb-4">🎁</div>
-                <h2 class="text-3xl font-bold gradient-text mb-4">
-                    Seu Resultado Está Quase Pronto!
-                </h2>
-                <p class="text-xl text-gray-300 mb-6">
-                    Digite seu melhor e-mail para receber seu resultado personalizado + 
-                    <strong class="gradient-text">Kit de Prosperidade Astrológica 2025</strong>
-                </p>
-            </div>
-            
-            <div class="max-w-md mx-auto">
-                <div class="mb-6">
-                    <input 
-                        type="email" 
-                        id="user-email" 
-                        placeholder="Seu melhor e-mail aqui..."
-                        class="w-full p-4 rounded-lg email-input text-white placeholder-gray-400 text-lg"
-                        required
-                    >
+<body class="mystical-bg">
+    <!-- Landing Page -->
+    <div id="landing-page" class="min-h-screen flex items-center justify-center p-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <!-- Hero Image -->
+            <div class="hero-image w-full h-64 md:h-80 rounded-2xl glass-effect cosmic-glow mb-8 flex items-center justify-center relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-r from-purple-600/80 to-pink-500/80"></div>
+                <div class="relative z-10 text-white p-8">
+                    <h1 class="text-3xl md:text-5xl font-bold mb-4 gradient-text floating">
+                        Descubra Seus Caminhos<br>
+                        <span class="text-pink-400">Astrológicos</span><br>
+                        para <span class="text-yellow-400">Prosperidade</span>
+                    </h1>
                 </div>
                 
-                <button 
-                    id="get-result-btn" 
-                    class="mystical-button w-full py-4 px-6 rounded-lg text-white font-bold text-xl pulse"
-                >
-                    ✨ RECEBER RESULTADO + KIT GRÁTIS ✨
-                </button>
+                <!-- Elementos flutuantes -->
+                <div class="absolute top-4 left-4 text-2xl floating" style="animation-delay: 0s;">♈</div>
+                <div class="absolute top-4 right-4 text-2xl floating" style="animation-delay: 0.5s;">♉</div>
+                <div class="absolute bottom-4 left-4 text-2xl floating" style="animation-delay: 1s;">♊</div>
+                <div class="absolute bottom-4 right-4 text-2xl floating" style="animation-delay: 1.5s;">♋</div>
+                <div class="absolute top-1/2 left-4 text-2xl floating" style="animation-delay: 2s;">♌</div>
+                <div class="absolute top-1/2 right-4 text-2xl floating" style="animation-delay: 2.5s;">♍</div>
+                
+                <!-- Elementos decorativos -->
+                <div class="absolute top-8 left-1/4 text-yellow-400 text-xl floating">✨</div>
+                <div class="absolute top-1/3 right-1/4 text-pink-400 text-xl floating" style="animation-delay: 0.8s;">💖</div>
+                <div class="absolute bottom-8 left-1/3 text-yellow-400 text-xl floating" style="animation-delay: 1.2s;">🌟</div>
+                <div class="absolute bottom-1/3 right-1/3 text-purple-400 text-xl floating" style="animation-delay: 1.6s;">🔮</div>
+                <div class="absolute top-1/4 left-1/2 text-yellow-400 text-2xl floating" style="animation-delay: 0.3s;">💰</div>
+                <div class="absolute bottom-1/4 right-1/2 text-pink-400 text-2xl floating" style="animation-delay: 0.7s;">💎</div>
             </div>
+            
+            <!-- Subtitle -->
+            <p class="text-xl md:text-2xl text-gray-300 mb-8">
+                Um teste revelador que desvenda seus bloqueios energéticos no 
+                <span class="gradient-text font-semibold">dinheiro e amor</span>, baseado na sua energia astrológica pessoal
+            </p>
+            
+            <!-- Social Proof -->
+            <div class="flex justify-center items-center space-x-2 mb-8">
+                <div class="flex">
+                    <span class="text-yellow-400 text-xl">⭐</span>
+                    <span class="text-yellow-400 text-xl">⭐</span>
+                    <span class="text-yellow-400 text-xl">⭐</span>
+                    <span class="text-yellow-400 text-xl">⭐</span>
+                    <span class="text-yellow-400 text-xl">⭐</span>
+                </div>
+                <span class="text-gray-300 ml-3">Avaliado por <strong>12.847 pessoas</strong></span>
+            </div>
+            
+            <!-- CTA Button -->
+            <button onclick="startQuiz()" class="mystical-button px-8 py-4 text-xl font-bold text-white rounded-full pulse mb-6">
+                🔮 DESCOBRIR MEUS CAMINHOS
+            </button>
+            
+            <!-- Additional Info -->
+            <div class="flex justify-center items-center space-x-6 text-gray-400">
+                <div class="flex items-center">
+                    <span class="w-2 h-2 bg-pink-500 rounded-full mr-2"></span>
+                    <span>Leva apenas 3 minutos</span>
+                </div>
+                <div class="flex items-center">
+                    <span class="w-2 h-2 bg-yellow-500 rounded-full mr-2"></span>
+                    <span>🎁 Resultado + Brinde Exclusivo</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
-            <div class="text-center mt-6">
+    <!-- Quiz Container -->
+    <div id="quiz-container" class="hidden min-h-screen p-4">
+        <div class="max-w-3xl mx-auto">
+            <!-- Progress Bar -->
+            <div class="mb-8">
+                <div class="flex justify-between text-sm text-gray-300 mb-2">
+                    <span>Pergunta <span id="current-question">1</span> de 7</span>
+                    <span id="progress-percentage">14%</span>
+                </div>
+                <div class="w-full bg-gray-700 rounded-full h-3">
+                    <div id="progress-bar" class="bg-gradient-to-r from-pink-500 to-purple-600 h-3 rounded-full progress-bar" style="width: 14%"></div>
+                </div>
+            </div>
+            
+            <!-- Question Container -->
+            <div class="glass-effect rounded-2xl p-8 cosmic-glow">
+                <div id="question-content">
+                    <!-- Questions will be dynamically loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Email Gate -->
+    <div id="email-gate" class="hidden min-h-screen flex items-center justify-center p-4">
+        <div class="max-w-2xl mx-auto text-center">
+            <div class="glass-effect rounded-2xl p-8 cosmic-glow">
+                <div class="text-6xl mb-6">🎁</div>
+                <h2 class="text-3xl md:text-4xl font-bold gradient-text mb-6">
+                    Seu Mapa Astrológico Está Quase Pronto!
+                </h2>
+                <p class="text-xl text-gray-300 mb-8">
+                    Digite seu melhor e-mail para receber seu <strong class="gradient-text">Diagnóstico Completo + Kit de Prosperidade 2025</strong> totalmente GRÁTIS
+                </p>
+                
+                <!-- Countdown -->
+                <div class="bg-red-600 text-white px-4 py-2 rounded-lg inline-block mb-6">
+                    <span class="font-bold">⏰ Apenas <span id="countdown">47</span> pessoas serão atendidas hoje!</span>
+                </div>
+                
+                <form id="email-form" class="max-w-md mx-auto">
+                    <div class="mb-6">
+                        <input type="email" id="email-input" 
+                               placeholder="Seu melhor e-mail aqui..." 
+                               class="w-full p-4 text-lg rounded-lg bg-white bg-opacity-10 border border-pink-500 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-500"
+                               required>
+                    </div>
+                    
+                    <button type="submit" class="mystical-button w-full py-4 text-xl font-bold text-white rounded-lg pulse mb-4">
+                        ✨ RECEBER RESULTADO + KIT GRÁTIS ✨
+                    </button>
+                </form>
+                
                 <p class="text-sm text-gray-400">
                     🔒 Seus dados estão 100% seguros. Não enviamos spam.
                 </p>
-      
-        <!-- Result Section -->
-        <div id="result-section" class="result-card rounded-lg p-8" style="display: none;">
-            <div class="text-center">
-                <div class="text-6xl mb-4">✅</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Page -->
+    <div id="confirmation" class="hidden min-h-screen flex items-center justify-center p-4">
+        <div class="max-w-2xl mx-auto text-center">
+            <div class="glass-effect rounded-2xl p-8 cosmic-glow">
+                <div class="text-6xl mb-6">✅</div>
                 <h2 class="text-3xl font-bold text-white mb-4">Resultado e Kit Enviados!</h2>
                 <p class="text-xl text-gray-300 mb-6">
-                    Seu resultado personalizado + <strong class="gradient-text">Kit de Prosperidade Astrológica 2025</strong> foram enviados para:
+                    Seu mapa astrológico personalizado + <strong class="gradient-text">Kit de Prosperidade 2025</strong> foram enviados para:
                 </p>
-                <div class="glass-effect rounded-lg p-4 mb-8">
-                    <p id="sent-email" class="text-xl font-bold gradient-text"></p>
+                <div class="bg-white bg-opacity-10 rounded-lg p-4 mb-8">
+                    <p id="confirmed-email" class="text-xl font-bold gradient-text"></p>
                 </div>
                 
                 <div class="text-left mb-8">
                     <h3 class="text-2xl font-bold text-white mb-4">📧 PRÓXIMOS PASSOS:</h3>
-                    <div class="space-y-2">
+                    <div class="space-y-3">
                         <p class="text-lg text-gray-300">1️⃣ Verifique sua caixa de entrada</p>
                         <p class="text-lg text-gray-300">2️⃣ Se não encontrar, olhe no spam</p>
                         <p class="text-lg text-gray-300">3️⃣ Baixe seu kit exclusivo</p>
@@ -382,7 +241,7 @@
                     </div>
                 </div>
 
-                <div class="glass-effect rounded-lg p-6 mb-8">
+                <div class="bg-white bg-opacity-10 rounded-lg p-6 mb-8">
                     <h3 class="text-2xl font-bold gradient-text mb-4">🎁 ACESSE SEU KIT AGORA:</h3>
                     <p class="text-lg text-gray-300 mb-4">
                         Não quer esperar o email? Acesse diretamente seu Kit de Prosperidade:
@@ -392,20 +251,20 @@
                     </a>
                 </div>
 
-                <div class="cosmic-glow rounded-lg p-6">
-                    <h3 class="text-2xl font-bold gradient-text mb-4">🚀 Quer Turbinar Seus Resultados?</h3>
-                    <p class="text-lg text-gray-300 mb-4">
+                <div class="bg-gradient-to-r from-purple-600 to-pink-500 rounded-lg p-6">
+                    <h3 class="text-2xl font-bold text-white mb-4">🚀 Quer Turbinar Seus Resultados?</h3>
+                    <p class="text-lg text-white mb-4">
                         Receba previsões astrológicas <strong>diárias e personalizadas</strong> no seu WhatsApp para nunca mais perder uma oportunidade!
                     </p>
                     <div class="mb-4">
-                        <span class="line-through text-gray-500 text-lg">R$ 97,90</span>
-                        <span class="text-3xl font-bold gradient-text ml-2">R$ 9,90</span>
+                        <span class="line-through text-gray-200 text-lg">R$ 97,90</span>
+                        <span class="text-3xl font-bold text-yellow-300 ml-2">R$ 9,90</span>
                         <span class="bg-red-600 text-white px-2 py-1 rounded ml-2">90% OFF</span>
                     </div>
-                    <a href="https://certidaoastrologica.com.br/astroguia2-0/" target="_blank" class="mystical-button inline-block py-4 px-8 rounded-lg text-white font-bold text-xl">
+                    <a href="https://certidaoastrologica.com.br/astroguia2-0/" target="_blank" class="bg-white text-purple-600 hover:bg-gray-100 py-4 px-8 rounded-lg font-bold text-xl transition inline-block">
                         QUERO PREVISÕES DIÁRIAS
                     </a>
-                    <p class="text-sm text-gray-400 mt-4">
+                    <p class="text-sm text-gray-200 mt-4">
                         ⚡ Oferta especial por tempo limitado • Garantia de 30 dias
                     </p>
                 </div>
@@ -414,200 +273,248 @@
     </div>
 
     <script>
-        let currentQuestion = 1;
-        let answers = {};
-        const totalQuestions = 7;
+        const questions = [
+            {
+                question: "Qual é a sua maior preocupação financeira atualmente?",
+                options: [
+                    { text: "🤑 Não consigo poupar dinheiro", value: "saving" },
+                    { text: "💸 Tenho medo de investir e perder", value: "fear" },
+                    { text: "⚡ Minha renda nunca é suficiente", value: "income" },
+                    { text: "🛒 Gasto mais do que ganho", value: "spending" }
+                ]
+            },
+            {
+                question: "Como você se sente em relação ao amor atualmente?",
+                options: [
+                    { text: "💔 Estou sozinho(a) e não encontro ninguém", value: "single" },
+                    { text: "🌪 Tenho relacionamentos, mas não duram", value: "unstable" },
+                    { text: "😴 Estou em um relacionamento, mas falta paixão", value: "routine" },
+                    { text: "😰 Tenho medo de me entregar completamente", value: "fear_love" }
+                ]
+            },
+            {
+                question: "Qual momento da vida você está vivendo?",
+                options: [
+                    { text: "🌪️ Fase de muitas mudanças e incertezas", value: "change" },
+                    { text: "⚖️ Buscando mais estabilidade", value: "stability" },
+                    { text: "🚀 Pronto(a) para grandes realizações", value: "achievement" },
+                    { text: "🔒 Sentindo que estou estagnado(a)", value: "stuck" }
+                ]
+            },
+            {
+                question: "Como você toma decisões financeiras importantes?",
+                options: [
+                    { text: "🔮 Sigo minha intuição e sentimentos", value: "intuitive" },
+                    { text: "📊 Analiso todos os dados possíveis", value: "analytical" },
+                    { text: "👥 Peço conselhos para várias pessoas", value: "advice" },
+                    { text: "⏳ Evito tomar decisões até ser obrigado(a)", value: "procrastinate" }
+                ]
+            },
+            {
+                question: "O que você acredita que mais te bloqueia na vida?",
+                options: [
+                    { text: "😨 Medo do fracasso", value: "fear_failure" },
+                    { text: "😞 Falta de autoconfiança", value: "confidence" },
+                    { text: "🏠 Padrões familiares limitantes", value: "family" },
+                    { text: "🤷 Não sei ao certo o que quero", value: "direction" }
+                ]
+            },
+            {
+                question: "Em qual área você sente que precisa de mais energia?",
+                options: [
+                    { text: "💼 Carreira e realização profissional", value: "career" },
+                    { text: "❤️ Relacionamentos e vida amorosa", value: "love_area" },
+                    { text: "💰 Dinheiro e abundância material", value: "money" },
+                    { text: "💚 Saúde e bem-estar físico", value: "health" },
+                    { text: "🧘 Crescimento espiritual e autoconhecimento", value: "spiritual" },
+                    { text: "🛡️ Segurança e estabilidade emocional", value: "security" }
+                ]
+            },
+            {
+                question: "Qual aspecto da sua personalidade você quer transformar?",
+                options: [
+                    { text: "🗣 Comunicação e expressão", value: "communication" },
+                    { text: "🎨 Criatividade e inspiração", value: "creativity" },
+                    { text: "💪 Disciplina e foco", value: "discipline" },
+                    { text: "✨ Autoconfiança e autoestima", value: "confidence_transform" },
+                    { text: "⏰ Paciência e tranquilidade", value: "patience" },
+                    { text: "🦁 Coragem para tomar decisões", value: "courage" }
+                ]
+            }
+        ];
 
-        // Mapeamento das perguntas e respostas
-        const questionTexts = {
-            1: "Qual é a sua maior preocupação financeira atualmente?",
-            2: "Qual é o seu status de relacionamento?", 
-            3: "Como você costuma lidar com mudanças importantes na vida?",
-            4: "Como você prefere tomar decisões importantes?",
-            5: "O que mais te motiva a buscar prosperidade financeira?",
-            6: "Qual é o seu maior medo em relação ao futuro?",
-            7: "Em que área da vida você mais deseja crescimento?"
-        };
+        let currentQuestionIndex = 0;
+        let answers = [];
+        let countdown = Math.floor(Math.random() * 10) + 40; // Número aleatório entre 40-49
 
-        const answerTexts = {
-            "saving": "A) Não consigo poupar dinheiro",
-            "debt": "B) Estou endividado(a)",
-            "income": "C) Preciso aumentar minha renda", 
-            "investment": "D) Não sei onde investir",
-            "single": "A) Solteiro(a)",
-            "relationship": "B) Em um relacionamento",
-            "married": "C) Casado(a)",
-            "complicated": "D) É complicado",
-            "embrace": "A) Abraço com entusiasmo",
-            "cautious": "B) Analiso cuidadosamente antes de agir",
-            "resist": "C) Costumo resistir e me adapto lentamente",
-            "flexible": "D) Fluo naturalmente com as mudanças",
-            "logical": "A) Baseado em dados e análises",
-            "intuitive": "B) Sigo minha intuição e sinais do universo",
-            "advice": "C) Peço conselhos de pessoas próximas",
-            "mixed": "D) Combino lógica e intuição",
-            "freedom": "A) Liberdade e independência",
-            "family": "B) Cuidar da família",
-            "security": "C) Segurança e estabilidade",
-            "dreams": "D) Realizar sonhos e experiências",
-            "fear_failure": "A) Não conseguir alcançar meus objetivos",
-            "fear_loneliness": "B) Ficar sozinho(a)",
-            "fear_poverty": "C) Problemas financeiros", 
-            "fear_health": "D) Problemas de saúde",
-            "career": "A) Carreira profissional",
-            "love": "B) Relacionamentos amorosos",
-            "spiritual": "C) Desenvolvimento espiritual",
-            "personal": "D) Crescimento pessoal"
-        };
+        function startQuiz() {
+            document.getElementById('landing-page').classList.add('hidden');
+            document.getElementById('quiz-container').classList.remove('hidden');
+            showQuestion(0);
+        }
 
-        function updateProgress() {
-            const progress = ((currentQuestion - 1) / totalQuestions) * 100;
+        function showQuestion(index) {
+            const question = questions[index];
+            const container = document.getElementById('question-content');
+            
+            container.innerHTML = `
+                <h2 class="text-2xl md:text-3xl font-bold mb-8">${question.question}</h2>
+                <div class="space-y-4">
+                    ${question.options.map((option, i) => `
+                        <button onclick="selectAnswer('${option.value}')" 
+                                class="w-full p-4 text-left bg-white bg-opacity-10 hover:bg-opacity-20 rounded-lg transition duration-300 border border-transparent hover:border-pink-400 quiz-option">
+                            ${option.text}
+                        </button>
+                    `).join('')}
+                </div>
+            `;
+
+            // Atualizar barra de progresso
+            const progress = ((index + 1) / 7) * 100;
             document.getElementById('progress-bar').style.width = progress + '%';
-            document.getElementById('progress-text').textContent = `${currentQuestion - 1}/${totalQuestions}`;
+            document.getElementById('current-question').textContent = index + 1;
+            document.getElementById('progress-percentage').textContent = Math.round(progress) + '%';
         }
 
-        function showQuestion(questionNumber) {
-            document.querySelectorAll('.question-card').forEach(card => {
-                card.classList.remove('active');
-            });
-            
-            if (questionNumber <= totalQuestions) {
-                const questionCard = document.querySelector(`[data-question="${questionNumber}"]`);
-                if (questionCard) {
-                    questionCard.classList.add('active');
-                }
-            }
-        }
+        function selectAnswer(value) {
+            answers.push(value);
+            currentQuestionIndex++;
 
-        function nextQuestion() {
-            if (currentQuestion < totalQuestions) {
-                currentQuestion++;
-                showQuestion(currentQuestion);
-                updateProgress();
+            if (currentQuestionIndex < questions.length) {
+                setTimeout(() => {
+                    showQuestion(currentQuestionIndex);
+                }, 200);
             } else {
-                showEmailSection();
+                setTimeout(() => {
+                    showEmailGate();
+                }, 300);
             }
         }
 
-        function showEmailSection() {
-            document.getElementById('quiz-container').style.display = 'none';
-            document.getElementById('email-section').style.display = 'block';
+        function showEmailGate() {
+            document.getElementById('quiz-container').classList.add('hidden');
+            document.getElementById('email-gate').classList.remove('hidden');
             
-            // Complete progress bar
-            document.getElementById('progress-bar').style.width = '100%';
-            document.getElementById('progress-text').textContent = `${totalQuestions}/${totalQuestions}`;
+            // Iniciar countdown
+            const countdownInterval = setInterval(() => {
+                countdown--;
+                document.getElementById('countdown').textContent = countdown;
+                if (countdown <= 0) {
+                    clearInterval(countdownInterval);
+                    countdown = Math.floor(Math.random() * 10) + 40; // Reset aleatório
+                }
+            }, 30000); // Diminui a cada 30 segundos
         }
 
-        function collectAnswers() {
-            const formattedAnswers = [];
+        document.getElementById('email-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email-input').value;
             
-            // Percorre as respostas na ordem das questões
-            for (let i = 1; i <= totalQuestions; i++) {
-                if (answers[i]) {
-                    const question = questionTexts[i];
-                    const answer = answerTexts[answers[i]];
-                    formattedAnswers.push(`${question} - ${answer}`);
-                }
+            // Validação de email básica
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Por favor, digite um email válido!');
+                return;
             }
             
-            return formattedAnswers;
-        }
-
-        async function sendDataToWebhook(email, answers) {
-            try {
-                const payload = {
-                    email: email,
-                    answers: answers,
-                    timestamp: new Date().toISOString(),
-                    quiz_name: "Quiz Astrológico - Prosperidade",
-                    page_url: window.location.href
-                };
-
-                const response = await fetch('https://integracao.netunodigital.com.br/webhook/netunodigital/RCBR3JnUF3dIr8CX', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(payload)
-                });
-
-                console.log('Dados enviados:', payload);
-                return response.ok;
-            } catch (error) {
-                console.error('Erro ao enviar dados:', error);
-                return false;
+            if (email) {
+                document.getElementById('confirmed-email').textContent = email;
+                document.getElementById('email-gate').classList.add('hidden');
+                document.getElementById('confirmation').classList.remove('hidden');
+                
+                // Aqui você integraria com seu sistema de email marketing
+                console.log('Email capturado:', email);
+                console.log('Respostas do quiz:', answers);
+                
+                // Função para coletar respostas formatadas
+                function collectFormattedAnswers() {
+                    const formattedAnswers = [];
+                    const questionTexts = [
+                        "Qual é a sua maior preocupação financeira atualmente?",
+                        "Como você se sente em relação ao amor atualmente?", 
+                        "Qual momento da vida você está vivendo?",
+                        "Como você toma decisões financeiras importantes?",
+                        "O que você acredita que mais te bloqueia na vida?",
+                        "Em qual área você sente que precisa de mais energia?",
+                        "Qual aspecto da sua personalidade você quer transformar?"
+                    ];
+                    
+                    const answerTexts = {
+                        "saving": "🤑 Não consigo poupar dinheiro",
+                        "fear": "💸 Tenho medo de investir e perder", 
+                        "income": "⚡ Minha renda nunca é suficiente",
+                        "spending": "🛒 Gasto mais do que ganho",
+                        "single": "💔 Estou sozinho(a) e não encontro ninguém",
+                        "unstable": "🌪 Tenho relacionamentos, mas não duram",
+                        "routine": "😴 Estou em um relacionamento, mas falta paixão",
+                        "fear_love": "😰 Tenho medo de me entregar completamente",
+                        "change": "🌪️ Fase de muitas mudanças e incertezas",
+                        "stability": "⚖️ Buscando mais estabilidade",
+                        "achievement": "🚀 Pronto(a) para grandes realizações",
+                        "stuck": "🔒 Sentindo que estou estagnado(a)",
+                        "intuitive": "🔮 Sigo minha intuição e sentimentos",
+                        "analytical": "📊 Analiso todos os dados possíveis",
+                        "advice": "👥 Peço conselhos para várias pessoas",
+                        "procrastinate": "⏳ Evito tomar decisões até ser obrigado(a)",
+                        "fear_failure": "😨 Medo do fracasso",
+                        "confidence": "😞 Falta de autoconfiança",
+                        "family": "🏠 Padrões familiares limitantes",
+                        "direction": "🤷 Não sei ao certo o que quero",
+                        "career": "💼 Carreira e realização profissional",
+                        "love_area": "❤️ Relacionamentos e vida amorosa",
+                        "money": "💰 Dinheiro e abundância material",
+                        "health": "💚 Saúde e bem-estar físico",
+                        "spiritual": "🧘 Crescimento espiritual e autoconhecimento",
+                        "security": "🛡️ Segurança e estabilidade emocional",
+                        "communication": "🗣 Comunicação e expressão",
+                        "creativity": "🎨 Criatividade e inspiração",
+                        "discipline": "💪 Disciplina e foco",
+                        "confidence_transform": "✨ Autoconfiança e autoestima",
+                        "patience": "⏰ Paciência e tranquilidade",
+                        "courage": "🦁 Coragem para tomar decisões"
+                    };
+                    
+                    for (let i = 0; i < answers.length && i < questionTexts.length; i++) {
+                        const questionText = questionTexts[i];
+                        const answerText = answerTexts[answers[i]] || answers[i];
+                        formattedAnswers.push(`${questionText} - ${answerText}`);
+                    }
+                    
+                    return formattedAnswers;
+                }
+                
+                // Função para enviar dados para o webhook
+                async function sendDataToWebhook(email, formattedAnswers) {
+                    try {
+                        const payload = {
+                            email: email,
+                            answers: formattedAnswers,
+                            timestamp: new Date().toISOString(),
+                            quiz_name: "Quiz Astrológico - Prosperidade",
+                            page_url: window.location.href
+                        };
+                        
+                        const response = await fetch('https://integracao.netunodigital.com.br/webhook/netunodigital/RCBR3JnUF3dIr8CX', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(payload)
+                        });
+                        
+                        console.log('Dados enviados para webhook:', payload);
+                        return response.ok;
+                    } catch (error) {
+                        console.error('Erro ao enviar dados para webhook:', error);
+                        return false;
+                    }
+                }
+                
+                // Enviar dados para o webhook
+                const formattedAnswers = collectFormattedAnswers();
+                sendDataToWebhook(email, formattedAnswers);
             }
-        }
-
-        // Event listeners
-        document.addEventListener('DOMContentLoaded', function() {
-            updateProgress();
-            
-            // Answer selection
-            document.querySelectorAll('.answer-option').forEach(option => {
-                option.addEventListener('click', function() {
-                    const questionNumber = this.closest('.question-card').getAttribute('data-question');
-                    const value = this.getAttribute('data-value');
-                    
-                    // Remove previous selection for this question
-                    this.closest('.question-card').querySelectorAll('.answer-option').forEach(opt => {
-                        opt.classList.remove('selected');
-                    });
-                    
-                    // Add selection to current option
-                    this.classList.add('selected');
-                    
-                    // Store answer
-                    answers[questionNumber] = value;
-                    
-                    // Auto advance after selection
-                    setTimeout(() => {
-                        nextQuestion();
-                    }, 500);
-                });
-            });
-
-            // Email submission
-            document.getElementById('get-result-btn').addEventListener('click', async function() {
-                const email = document.getElementById('user-email').value.trim();
-                
-                if (!email) {
-                    alert('Por favor, digite seu e-mail.');
-                    return;
-                }
-                
-                if (!email.includes('@')) {
-                    alert('Por favor, digite um e-mail válido.');
-                    return;
-                }
-                
-                // Show loading
-                this.textContent = '⏳ ENVIANDO...';
-                this.disabled = true;
-                
-                // Collect formatted answers
-                const formattedAnswers = collectAnswers();
-                
-                // Send data to webhook
-                const success = await sendDataToWebhook(email, formattedAnswers);
-                
-                // Show result regardless of webhook success
-                showResult(email);
-            });
-
-            // Email input validation
-            document.getElementById('user-email').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    document.getElementById('get-result-btn').click();
-                }
-            });
         });
-
-        function showResult(email) {
-            document.getElementById('email-section').style.display = 'none';
-            document.getElementById('result-section').style.display = 'block';
-            document.getElementById('sent-email').textContent = email;
-        }
     </script>
 </body>
 </html>
