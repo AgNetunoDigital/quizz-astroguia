@@ -1,0 +1,464 @@
+Copy<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descubra Seus Caminhos Astrológicos para Prosperidade</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f0f 100%);
+            min-height: 100vh;
+        }
+        .mystical-bg {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.9), rgba(22, 33, 62, 0.8)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="stars" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="%23ffffff" opacity="0.3"><animate attributeName="opacity" values="0.1;0.8;0.1" dur="3s" repeatCount="indefinite"/></circle><circle cx="80" cy="40" r="0.5" fill="%23ffd700" opacity="0.5"><animate attributeName="opacity" values="0.2;0.9;0.2" dur="2s" repeatCount="indefinite"/></circle><circle cx="50" cy="80" r="0.8" fill="%23ff69b4" opacity="0.4"><animate attributeName="opacity" values="0.1;0.7;0.1" dur="4s" repeatCount="indefinite"/></circle></pattern></defs><rect width="100%25" height="100%25" fill="url(%23stars)"/></svg>');
+        }
+        .gradient-text {
+            background: linear-gradient(45deg, #ff69b4, #ffd700, #ff6b35);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .glow {
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
+        }
+        .card-mystical {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 105, 180, 0.2);
+        }
+        .btn-primary {
+            background: linear-gradient(45deg, #e91e63, #ff69b4);
+        }
+        .btn-secondary {
+            background: linear-gradient(45deg, #00d4aa, #00bfa5);
+        }
+        .progress-bar {
+            background: linear-gradient(90deg, #ff69b4, #ffd700);
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .zoom-in {
+            animation: zoomIn 0.3s ease-out;
+        }
+        @keyframes zoomIn {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .email-error {
+            color: #ff4444;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+        .error-border {
+            border-color: #ff4444 !important;
+        }
+    </style>
+</head>
+<body class="mystical-bg text-white">
+
+    <!-- Página Inicial -->
+    <div id="landing-page" class="min-h-screen flex items-center justify-center py-12 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="mb-8">
+                <img src="https://cdn1.genspark.ai/user-upload-image/4_generated/c344163e-cff2-4c2a-b362-9687847fc2d0" 
+                     alt="Mulher Mística Astrologia" 
+                     class="w-full max-w-2xl mx-auto rounded-lg shadow-2xl glow">
+            </div>
+            
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                Descubra Seus Caminhos <span class="gradient-text">Astrológicos</span><br>
+                para <span class="gradient-text">Prosperidade</span>
+            </h1>
+            
+            <p class="text-xl md:text-2xl mb-8 text-gray-300 max-w-3xl mx-auto">
+                Um teste revelador que desvenda seus bloqueios energéticos no <strong>dinheiro e amor</strong>, 
+                baseado na sua energia astrológica pessoal
+            </p>
+            
+            <div class="mb-8">
+                <div class="flex items-center justify-center space-x-2 text-yellow-400 mb-4">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <span class="ml-2 text-gray-300">Avaliado por <strong>12.847 pessoas</strong></span>
+                </div>
+            </div>
+
+            <button onclick="startQuiz()" class="btn-primary text-white text-xl font-bold py-4 px-12 rounded-full hover:transform hover:scale-105 transition duration-300 shadow-lg">
+                <i class="fas fa-magic mr-2"></i>
+                DESCOBRIR MEUS CAMINHOS
+            </button>
+            
+            <p class="mt-4 text-sm text-gray-400">
+                ⏱️ Leva apenas 3 minutos • 🎁 Resultado + Brinde Exclusivo
+            </p>
+        </div>
+    </div>
+
+    <!-- Quiz -->
+    <div id="quiz-container" class="hidden min-h-screen py-8 px-4">
+        <div class="max-w-3xl mx-auto">
+            <!-- Barra de Progresso -->
+            <div class="mb-8">
+                <div class="bg-gray-700 rounded-full h-2">
+                    <div id="progress-bar" class="progress-bar h-2 rounded-full transition-all duration-300" style="width: 14.3%"></div>
+                </div>
+                <div class="text-center mt-2 text-gray-300">
+                    Pergunta <span id="current-question">1</span> de 7
+                </div>
+            </div>
+
+            <!-- Perguntas -->
+            <div id="question-container" class="card-mystical rounded-xl p-8 text-center fade-in">
+                <div id="question-content">
+                    <!-- Conteúdo da pergunta será inserido aqui -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tela de Captura de Email -->
+    <div id="email-gate" class="hidden min-h-screen flex items-center justify-center py-12 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="card-mystical rounded-xl p-8 md:p-12 zoom-in">
+                <div class="mb-6">
+                    <i class="fas fa-gift text-6xl text-yellow-400 mb-4"></i>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                        🎯 Seu Resultado Personalizado + <span class="gradient-text">Brinde Exclusivo</span>
+                    </h2>
+                </div>
+                
+                <div class="bg-gradient-to-r from-yellow-400 to-orange-500 text-black p-4 rounded-lg mb-6">
+                    <h3 class="text-xl font-bold mb-2">🎁 OFERTA EXCLUSIVA - APENAS HOJE!</h3>
+                    <p class="font-bold">Kit de Prosperidade Astrológica 2025</p>
+                    <p><span class="line-through">De R$ 297</span> <strong class="text-2xl">GRÁTIS</strong></p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-8 text-left">
+                    <div>
+                        <h4 class="font-bold text-lg mb-3 text-center">📊 Seu Resultado Inclui:</h4>
+                        <ul class="space-y-2">
+                            <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Análise completa do seu perfil</li>
+                            <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Bloqueios específicos identificados</li>
+                            <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Plano de ação personalizado</li>
+                            <li><i class="fas fa-check-circle text-green-400 mr-2"></i>Dicas exclusivas para seu signo</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg mb-3 text-center">🎁 Kit Grátis Inclui:</h4>
+                        <ul class="space-y-2">
+                            <li><i class="fas fa-star text-yellow-400 mr-2"></i>Calendário Lunar 2025</li>
+                            <li><i class="fas fa-star text-yellow-400 mr-2"></i>12 Rituais de Abundância</li>
+                            <li><i class="fas fa-star text-yellow-400 mr-2"></i>Planilha Financeira Astrológica</li>
+                            <li><i class="fas fa-star text-yellow-400 mr-2"></i>E-book de 25 páginas</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-red-600 text-white p-3 rounded-lg mb-6">
+                    ⚠️ <strong>ATENÇÃO:</strong> Restam apenas <span id="countdown">47</span> kits disponíveis!
+                </div>
+
+                <form id="email-form" class="mb-6">
+                    <div class="max-w-md mx-auto">
+                        <label class="block text-left mb-2 font-semibold">📧 Digite seu melhor email:</label>
+                        <input type="email" id="email-input" required 
+                               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                               class="w-full p-4 rounded-lg text-black text-center text-lg font-semibold" 
+                               placeholder="seu@email.com">
+                        <div id="email-error" class="email-error" style="display: none;"></div>
+                        <button type="submit" class="btn-primary w-full mt-4 text-white text-xl font-bold py-4 rounded-lg hover:transform hover:scale-105 transition duration-300">
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            RECEBER RESULTADO + KIT GRÁTIS
+                        </button>
+                    </div>
+                </form>
+
+                <p class="text-xs text-gray-400">
+                    🔒 Seus dados estão seguros conosco. Não enviamos spam.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tela de Confirmação -->
+    <div id="confirmation" class="hidden min-h-screen flex items-center justify-center py-12 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="card-mystical rounded-xl p-8 md:p-12 zoom-in">
+                <div class="mb-6">
+                    <i class="fas fa-check-circle text-6xl text-green-400 mb-4"></i>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                        ✅ <span class="gradient-text">Resultado e Kit Enviados!</span>
+                    </h2>
+                </div>
+                
+                <p class="text-xl mb-6 text-gray-300">
+                    Seu resultado personalizado + <strong>Kit de Prosperidade Astrológica 2025</strong> 
+                    foram enviados para: <br>
+                    <strong class="text-yellow-400" id="confirmed-email"></strong>
+                </p>
+
+                <div class="bg-blue-600 p-4 rounded-lg mb-6">
+                    <h3 class="font-bold mb-2">📧 PRÓXIMOS PASSOS:</h3>
+                    <ol class="text-left max-w-md mx-auto space-y-2">
+                        <li>1️⃣ Verifique sua caixa de entrada</li>
+                        <li>2️⃣ Se não encontrar, olhe no spam</li>
+                        <li>3️⃣ Baixe seu kit exclusivo</li>
+                        <li>4️⃣ Implemente as estratégias</li>
+                    </ol>
+                </div>
+
+                <div class="bg-gradient-to-r from-purple-600 to-pink-600 p-4 rounded-lg mb-6">
+                    <h3 class="text-xl font-bold mb-2">🎁 ACESSE SEU KIT AGORA:</h3>
+                    <p class="mb-4">Não quer esperar o email? Acesse diretamente seu Kit de Prosperidade:</p>
+                    <button onclick="window.open('https://ycjrxnmf.gensparkspace.com/', '_blank')" class="btn-primary text-white text-xl font-bold py-4 px-12 rounded-full hover:transform hover:scale-105 transition duration-300 shadow-lg">
+                        <i class="fas fa-download mr-2"></i>
+                        ACESSAR MEU KIT AGORA
+                    </button>
+                </div>
+
+                <div class="mb-6 p-6 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg">
+                    <h3 class="text-2xl font-bold mb-3">🚀 Quer Turbinar Seus Resultados?</h3>
+                    <p class="mb-4">Receba previsões astrológicas <strong>diárias e personalizadas</strong> no seu WhatsApp para nunca mais perder uma oportunidade!</p>
+                    
+                    <div class="flex items-center justify-center mb-4">
+                        <span class="text-sm line-through mr-2">R$ 652/mês</span>
+                        <span class="text-3xl font-bold text-yellow-400">R$ 9,90/mês</span>
+                        <span class="ml-2 bg-red-500 px-2 py-1 rounded text-sm">85% OFF</span>
+                    </div>
+                </div>
+
+                <a href="https://certidaoastrologica.com.br/astroguia2-0/" target="_blank" 
+                   class="btn-secondary text-white text-xl font-bold py-4 px-12 rounded-full hover:transform hover:scale-105 transition duration-300 shadow-lg inline-block mb-4">
+                    <i class="fas fa-whatsapp mr-2"></i>
+                    QUERO PREVISÕES DIÁRIAS
+                </a>
+
+                <p class="text-sm text-gray-400">
+                    ⚡ Oferta especial por tempo limitado • Garantia de 30 dias
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "Qual é a sua maior preocupação financeira atualmente?",
+                options: [
+                    { text: "🤑 Não consigo poupar dinheiro", value: "saving" },
+                    { text: "💸 Tenho medo de investir e perder", value: "fear" },
+                    { text: "📉 Minha renda nunca é suficiente", value: "income" },
+                    { text: "💰 Gasto mais do que ganho", value: "spending" }
+                ]
+            },
+            {
+                question: "Como você se sente em relação ao amor atualmente?",
+                options: [
+                    { text: "😢 Estou sozinho(a) e não encontro ninguém", value: "single" },
+                    { text: "💔 Tenho relacionamentos, mas não duram", value: "unstable" },
+                    { text: "😐 Estou em um relacionamento, mas falta paixão", value: "routine" },
+                    { text: "😰 Tenho medo de me entregar completamente", value: "fear_love" }
+                ]
+            },
+            {
+                question: "Qual momento da vida você está vivendo?",
+                options: [
+                    { text: "🌪️ Fase de muitas mudanças e incertezas", value: "change" },
+                    { text: "⚖️ Buscando mais estabilidade", value: "stability" },
+                    { text: "🚀 Pronto(a) para grandes realizações", value: "achievement" },
+                    { text: "😴 Sentindo que estou estagnado(a)", value: "stuck" }
+                ]
+            },
+            {
+                question: "Como você toma decisões financeiras importantes?",
+                options: [
+                    { text: "🧠 Sigo minha intuição e sentimentos", value: "intuitive" },
+                    { text: "📊 Analiso todos os dados possíveis", value: "analytical" },
+                    { text: "👥 Peço conselhos para várias pessoas", value: "advice" },
+                    { text: "⏳ Evito tomar decisões até ser obrigado(a)", value: "procrastinate" }
+                ]
+            },
+            {
+                question: "O que você acredita que mais te bloqueia na vida?",
+                options: [
+                    { text: "😨 Medo do fracasso", value: "fear_failure" },
+                    { text: "😔 Falta de autoconfiança", value: "confidence" },
+                    { text: "👨‍👩‍👧‍👦 Padrões familiares limitantes", value: "family" },
+                    { text: "🤔 Não sei ao certo o que quero", value: "direction" }
+                ]
+            },
+            {
+                question: "Em qual área você sente que precisa de mais energia?",
+                options: [
+                    { text: "🏢 Carreira e realização profissional", value: "career" },
+                    { text: "❤️ Relacionamentos e vida amorosa", value: "love_area" },
+                    { text: "💵 Dinheiro e abundância material", value: "money_area" },
+                    { text: "🌟 Autoestima e desenvolvimento pessoal", value: "self" }
+                ]
+            },
+            {
+                question: "O que você mais busca para 2025?",
+                options: [
+                    { text: "🏦 Estabilidade financeira e segurança", value: "security" },
+                    { text: "💕 Um amor verdadeiro e duradouro", value: "true_love" },
+                    { text: "📈 Crescimento profissional e sucesso", value: "growth" },
+                    { text: "🧘‍♀️ Paz interior e equilíbrio", value: "balance" }
+                ]
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let answers = [];
+        let countdown = 47;
+
+        function startQuiz() {
+            document.getElementById('landing-page').classList.add('hidden');
+            document.getElementById('quiz-container').classList.remove('hidden');
+            showQuestion(0);
+        }
+
+        function showQuestion(index) {
+            const question = questions[index];
+            const container = document.getElementById('question-content');
+            
+            container.innerHTML = `
+                <h2 class="text-2xl md:text-3xl font-bold mb-8">${question.question}</h2>
+                <div class="space-y-4">
+                    ${question.options.map((option, i) => `
+                        <button onclick="selectAnswer('${option.value}')" 
+                                class="w-full p-4 text-left bg-white bg-opacity-10 hover:bg-opacity-20 rounded-lg transition duration-300 border border-transparent hover:border-pink-400">
+                            <span class="font-semibold">${String.fromCharCode(65 + i)})</span> ${option.text}
+                        </button>
+                    `).join('')}
+                </div>
+            `;
+
+            // Atualizar barra de progresso
+            const progress = ((index + 1) / 7) * 100;
+            document.getElementById('progress-bar').style.width = progress + '%';
+            document.getElementById('current-question').textContent = index + 1;
+        }
+
+        function selectAnswer(value) {
+            answers.push(value);
+            currentQuestionIndex++;
+
+            if (currentQuestionIndex < questions.length) {
+                setTimeout(() => {
+                    showQuestion(currentQuestionIndex);
+                }, 200);
+            } else {
+                setTimeout(() => {
+                    showEmailGate();
+                }, 300);
+            }
+        }
+
+        function showEmailGate() {
+            document.getElementById('quiz-container').classList.add('hidden');
+            document.getElementById('email-gate').classList.remove('hidden');
+            
+            // Iniciar countdown
+            const countdownInterval = setInterval(() => {
+                countdown--;
+                document.getElementById('countdown').textContent = countdown;
+                if (countdown <= 0) {
+                    clearInterval(countdownInterval);
+                    countdown = Math.floor(Math.random() * 10) + 40; // Reset aleatório
+                }
+            }, 30000); // Diminui a cada 30 segundos
+        }
+
+        // Validação de email
+        document.getElementById('email-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email-input').value;
+            const emailError = document.getElementById('email-error');
+            const emailInput = document.getElementById('email-input');
+            
+            // Regex para validação de email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            // Limpar erros anteriores
+            emailError.style.display = 'none';
+            emailInput.classList.remove('error-border');
+            
+            // Validar email
+            if (!email) {
+                emailError.textContent = 'Por favor, digite seu email.';
+                emailError.style.display = 'block';
+                emailInput.classList.add('error-border');
+                return;
+            }
+            
+            if (!emailRegex.test(email)) {
+                emailError.textContent = 'Por favor, digite um email válido.';
+                emailError.style.display = 'block';
+                emailInput.classList.add('error-border');
+                return;
+            }
+            
+            // Se chegou até aqui, email é válido
+            document.getElementById('confirmed-email').textContent = email;
+            document.getElementById('email-gate').classList.add('hidden');
+            document.getElementById('confirmation').classList.remove('hidden');
+            
+            // Aqui você integraria com seu sistema de email marketing
+            console.log('Email capturado:', email);
+            console.log('Respostas do quiz:', answers);
+        });
+
+        // Adicionar alguns efeitos visuais
+        document.addEventListener('DOMContentLoaded', function() {
+            // Efeito de estrelas cadentes ocasional
+            setInterval(() => {
+                if (Math.random() < 0.1) { // 10% de chance a cada intervalo
+                    createShootingStar();
+                }
+            }, 3000);
+        });
+
+        function createShootingStar() {
+            const star = document.createElement('div');
+            star.style.position = 'fixed';
+            star.style.top = Math.random() * 100 + 'vh';
+            star.style.left = '-10px';
+            star.style.width = '2px';
+            star.style.height = '2px';
+            star.style.background = '#ffd700';
+            star.style.borderRadius = '50%';
+            star.style.zIndex = '1000';
+            star.style.animation = 'shootingStar 2s linear forwards';
+            document.body.appendChild(star);
+
+            setTimeout(() => {
+                star.remove();
+            }, 2000);
+        }
+
+        // Adicionar CSS para estrela cadente
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shootingStar {
+                to {
+                    transform: translateX(100vw) translateY(-50vh);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
