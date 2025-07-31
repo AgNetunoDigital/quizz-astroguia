@@ -59,6 +59,55 @@
                 opacity: 0;
             }
         }
+        .bloqueio-bar {
+            height: 30px;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .bloqueio-fill {
+            height: 100%;
+            border-radius: 15px;
+            transition: width 2s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+        .bloqueio-high {
+            background: linear-gradient(90deg, #ff4444, #ff6666);
+            animation: pulseRed 2s infinite;
+        }
+        .bloqueio-medium {
+            background: linear-gradient(90deg, #ffaa00, #ffcc44);
+            animation: pulseYellow 2s infinite;
+        }
+        .bloqueio-low {
+            background: linear-gradient(90deg, #00aa44, #44cc66);
+            animation: pulseGreen 2s infinite;
+        }
+        @keyframes pulseRed {
+            0%, 100% { box-shadow: 0 0 10px rgba(255, 68, 68, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(255, 68, 68, 0.8); }
+        }
+        @keyframes pulseYellow {
+            0%, 100% { box-shadow: 0 0 10px rgba(255, 170, 0, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(255, 170, 0, 0.8); }
+        }
+        @keyframes pulseGreen {
+            0%, 100% { box-shadow: 0 0 10px rgba(0, 170, 68, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(0, 170, 68, 0.8); }
+        }
+        .bloqueio-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: bold;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+            z-index: 10;
+        }
     </style>
 </head>
 <body class="mystical-bg text-white">
@@ -99,7 +148,7 @@
             </button>
             
             <p class="mt-4 text-sm text-gray-400">
-                ⏱️ Leva 3 minutos • 🎁 Diagnóstico + Kit Exclusivo da Prosperidade
+                🎁 Diagnóstico + Kit Exclusivo da Prosperidade
             </p>
         </div>
     </div>
@@ -269,6 +318,22 @@
             }
         ];
 
+        // Dados dos bloqueios por signo
+        const bloqueioData = {
+            'aries': { categoria: 'repeticao', nivel: 78, nomeSigno: 'Áries' },
+            'touro': { categoria: 'escassez', nivel: 82, nomeSigno: 'Touro' },
+            'gemeos': { categoria: 'desconexao', nivel: 65, nomeSigno: 'Gêmeos' },
+            'cancer': { categoria: 'merecimento', nivel: 71, nomeSigno: 'Câncer' },
+            'leao': { categoria: 'merecimento', nivel: 68, nomeSigno: 'Leão' },
+            'virgem': { categoria: 'repeticao', nivel: 75, nomeSigno: 'Virgem' },
+            'libra': { categoria: 'merecimento', nivel: 73, nomeSigno: 'Libra' },
+            'escorpiao': { categoria: 'repeticao', nivel: 80, nomeSigno: 'Escorpião' },
+            'sagitario': { categoria: 'desconexao', nivel: 63, nomeSigno: 'Sagitário' },
+            'capricornio': { categoria: 'escassez', nivel: 85, nomeSigno: 'Capricórnio' },
+            'aquario': { categoria: 'desconexao', nivel: 67, nomeSigno: 'Aquário' },
+            'peixes': { categoria: 'merecimento', nivel: 69, nomeSigno: 'Peixes' }
+        };
+
         let currentQuestionIndex = 0;
         let answers = [];
         let userSign = null;
@@ -334,11 +399,31 @@
             }
         });
 
+        function getBloqueioLevel(nivel) {
+            if (nivel >= 75) return 'high';
+            if (nivel >= 60) return 'medium';
+            return 'low';
+        }
+
+        function getBloqueioColor(nivel) {
+            if (nivel >= 75) return 'bloqueio-high';
+            if (nivel >= 60) return 'bloqueio-medium';
+            return 'bloqueio-low';
+        }
+
+        function getBloqueioDescription(nivel) {
+            if (nivel >= 75) return 'CRÍTICO - Bloqueio Muito Alto';
+            if (nivel >= 60) return 'ATENÇÃO - Bloqueio Moderado';
+            return 'LEVE - Bloqueio Baixo';
+        }
+
         function showResultPage(email, sign) {
+            const userData = bloqueioData[sign] || { categoria: 'desconexao', nivel: 65, nomeSigno: 'Seu Signo' };
+            const nivelSucesso = 18; // Nível de pessoas bem-sucedidas
+            
             // Textos místicos e apocalípticos dos bloqueios!
             const bloqueios = {
                 escassez: {
-                    signos: ['touro', 'capricornio'],
                     title: "⚡ BLOQUEIO INVISÍVEL: ESCASSEZ",
                     emoji: "🏺",
                     description: `⚠️ ALERTA CÓSMICO ATIVADO! ⚠️
@@ -360,7 +445,6 @@ Os planetas estão alinhados para sua libertação, mas apenas SE você soltar o
 ⚡ DECRETO DOS ASTROS: Chega de viver como mendigo em um palácio cósmico!`
                 },
                 merecimento: {
-                    signos: ['cancer', 'leao', 'libra', 'peixes'],
                     title: "⚡ BLOQUEIO INVISÍVEL: MERECIMENTO",
                     emoji: "💖",
                     description: `🚨 INTERVENÇÃO CÓSMICA NECESSÁRIA! 🚨
@@ -386,7 +470,6 @@ Os astros estão furiosos! Eles criaram você para brilhar, não para ser sombra
 Quem não se valoriza, não é valorizado pelo universo.`
                 },
                 repeticao: {
-                    signos: ['aries', 'virgem', 'escorpiao'],
                     title: "⚡ BLOQUEIO INVISÍVEL: REPETIÇÃO",
                     emoji: "🔄",
                     description: `⚠️ ALERTA: VOCÊ ESTÁ PRESO EM UM LOOP TEMPORAL! ⚠️
@@ -412,7 +495,6 @@ Mas escute bem: OS PLANETAS ESTÃO SE ALINHANDO PARA QUEBRAR ESSE CICLO!
 Só quem ousa desafiar o próprio karma pode reescrever seu destino.`
                 },
                 desconexao: {
-                    signos: ['gemeos', 'sagitario', 'aquario'],
                     title: "⚡ BLOQUEIO INVISÍVEL: DESCONEXÃO",
                     emoji: "🌫️",
                     description: `🆘 SOS CÓSMICO! SUA ALMA ESTÁ EM DERIVA! 🆘
@@ -445,24 +527,50 @@ Sua alma está gritando: "VOLTE PARA CASA!"`
                 }
             };
 
-            let bloqueioEncontrado = null;
-            Object.keys(bloqueios).forEach(key => {
-                if (bloqueios[key].signos.includes(sign)) bloqueioEncontrado = bloqueios[key];
-            });
-
-            // Se não encontrar associação específica, usar padrão baseado em respostas
-            if (!bloqueioEncontrado) {
-                bloqueioEncontrado = bloqueios.desconexao; // fallback
-            }
+            const bloqueioEncontrado = bloqueios[userData.categoria];
 
             document.body.innerHTML = `
             <div class="mystical-bg min-h-screen flex items-center justify-center py-12 px-4">
-              <div class="max-w-4xl mx-auto text-center card-mystical rounded-xl p-8 md:p-12 zoom-in">
-                <div class="mb-6">
+              <div class="max-w-5xl mx-auto text-center card-mystical rounded-xl p-8 md:p-12 zoom-in">
+                <div class="mb-8">
                     <div class="text-6xl mb-4">${bloqueioEncontrado.emoji}</div>
                     <h2 class="text-3xl md:text-4xl font-bold mb-6 gradient-text">
                         ${bloqueioEncontrado.title}
                     </h2>
+                </div>
+                
+                <!-- Barra de Nível de Bloqueio -->
+                <div class="bg-gray-800 bg-opacity-80 rounded-lg p-6 mb-8">
+                    <h3 class="text-2xl font-bold mb-4 text-yellow-400">📊 SEU NÍVEL DE BLOQUEIO ENERGÉTICO</h3>
+                    
+                    <div class="mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-lg font-bold">Você (${userData.nomeSigno}):</span>
+                            <span class="text-xl font-bold text-red-400">${userData.nivel}% - ${getBloqueioDescription(userData.nivel)}</span>
+                        </div>
+                        <div class="bloqueio-bar mb-4">
+                            <div class="bloqueio-fill ${getBloqueioColor(userData.nivel)}" id="user-bar" style="width: 0%">
+                                <div class="bloqueio-text">${userData.nivel}%</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-lg font-bold">Pessoas Bem-Sucedidas:</span>
+                            <span class="text-xl font-bold text-green-400">${nivelSucesso}% - Fluxo Livre</span>
+                        </div>
+                        <div class="bloqueio-bar">
+                            <div class="bloqueio-fill bloqueio-low" id="success-bar" style="width: 0%">
+                                <div class="bloqueio-text">${nivelSucesso}%</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-red-900 bg-opacity-50 rounded-lg p-4">
+                        <p class="text-lg font-bold text-yellow-300">⚠️ DIFERENÇA CRÍTICA: ${userData.nivel - nivelSucesso} pontos de bloqueio!</p>
+                        <p class="text-gray-200 mt-2">Essa diferença explica por que você sente que "algo sempre trava" enquanto outros prosperam com facilidade. Cada ponto de bloqueio é uma barreira energética que repele oportunidades!</p>
+                    </div>
                 </div>
                 
                 <div class="bg-gray-900 bg-opacity-60 rounded-lg p-6 mb-8">
@@ -501,6 +609,12 @@ Sua alma está gritando: "VOLTE PARA CASA!"`
               </div>
             </div>
             `;
+
+            // Animar as barras após 1 segundo
+            setTimeout(() => {
+                document.getElementById('user-bar').style.width = userData.nivel + '%';
+                document.getElementById('success-bar').style.width = nivelSucesso + '%';
+            }, 1000);
         }
 
         function collectFormattedAnswers() {
@@ -567,10 +681,13 @@ Sua alma está gritando: "VOLTE PARA CASA!"`
 
         async function sendDataToWebhook(email, formattedAnswers, sign) {
             try {
+                const userData = bloqueioData[sign] || { categoria: 'desconexao', nivel: 65, nomeSigno: 'Desconhecido' };
                 const payload = {
                     email: email,
                     answers: formattedAnswers,
                     signo: sign,
+                    bloqueio_categoria: userData.categoria,
+                    bloqueio_nivel: userData.nivel,
                     timestamp: new Date().toISOString(),
                     quiz_name: "Quiz Astrológico - Bloqueio Invisível",
                     page_url: window.location.href
