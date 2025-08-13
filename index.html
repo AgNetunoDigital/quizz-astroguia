@@ -7,6 +7,25 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '945696946998199');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=945696946998199&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -339,6 +358,14 @@
         let userSign = null;
 
         function startQuiz() {
+            // Rastrear início do quiz
+            fbq('track', 'InitiateCheckout', {
+                content_name: 'Quiz Astrológico - Bloqueio Invisível',
+                content_category: 'Quiz',
+                value: 0.00,
+                currency: 'BRL'
+            });
+
             document.getElementById('landing-page').classList.add('hidden');
             document.getElementById('quiz-container').classList.remove('hidden');
             showQuestion(0);
@@ -370,6 +397,15 @@
             answers.push(value);
             if (currentQuestionIndex === questions.length - 1) userSign = value;
             currentQuestionIndex++;
+            
+            // Rastrear progresso do quiz
+            fbq('track', 'AddToCart', {
+                content_name: `Quiz Pergunta ${currentQuestionIndex}`,
+                content_category: 'Quiz Progress',
+                value: (currentQuestionIndex / questions.length) * 10,
+                currency: 'BRL'
+            });
+
             if (currentQuestionIndex < questions.length) {
                 setTimeout(() => showQuestion(currentQuestionIndex), 200);
             } else {
@@ -391,6 +427,21 @@
                 return;
             }
             if (email) {
+                // Rastrear conversão de lead
+                fbq('track', 'Lead', {
+                    content_name: 'Quiz Astrológico - Email Capturado',
+                    content_category: 'Lead Generation',
+                    value: 15.00,
+                    currency: 'BRL'
+                });
+
+                fbq('track', 'CompleteRegistration', {
+                    content_name: 'Quiz Astrológico Completo',
+                    content_category: 'Quiz Completion',
+                    value: 25.00,
+                    currency: 'BRL'
+                });
+
                 document.getElementById('email-gate').classList.add('hidden');
                 showResultPage(email, userSign);
                 // Webhook igual ao seu código anterior
@@ -593,6 +644,7 @@ Sua alma está gritando: "VOLTE PARA CASA!"`
                     </div>
                     
                     <a href="https://checkout.pagtrust.com.br/ck30ee5831?funnel=fn2a1e332a" target="_blank"
+                        onclick="trackPurchase()"
                         class="btn-secondary text-white text-xl font-bold py-4 px-8 rounded-full hover:transform hover:scale-105 transition duration-300 shadow-lg inline-block mb-4">
                         <i class="fas fa-whatsapp mr-2"></i>
                         QUERO ORIENTAÇÃO DIÁRIA DOS ASTROS
@@ -615,6 +667,22 @@ Sua alma está gritando: "VOLTE PARA CASA!"`
                 document.getElementById('user-bar').style.width = userData.nivel + '%';
                 document.getElementById('success-bar').style.width = nivelSucesso + '%';
             }, 1000);
+        }
+
+        function trackPurchase() {
+            // Rastrear clique no botão de compra
+            fbq('track', 'Purchase', {
+                content_name: 'Orientação Astrológica Diária',
+                content_category: 'Subscription',
+                value: 9.90,
+                currency: 'BRL'
+            });
+
+            fbq('track', 'Subscribe', {
+                content_name: 'WhatsApp Astrológico',
+                value: 9.90,
+                currency: 'BRL'
+            });
         }
 
         function collectFormattedAnswers() {
