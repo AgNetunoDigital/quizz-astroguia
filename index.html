@@ -358,12 +358,11 @@
         let userSign = null;
 
         function startQuiz() {
-            // Rastrear início do quiz
-            fbq('track', 'InitiateCheckout', {
+            // Rastrear início do quiz - APENAS ViewContent
+            fbq('track', 'ViewContent', {
                 content_name: 'Quiz Astrológico - Bloqueio Invisível',
                 content_category: 'Quiz',
-                value: 0.00,
-                currency: 'BRL'
+                content_type: 'quiz_start'
             });
 
             document.getElementById('landing-page').classList.add('hidden');
@@ -397,14 +396,6 @@
             answers.push(value);
             if (currentQuestionIndex === questions.length - 1) userSign = value;
             currentQuestionIndex++;
-            
-            // Rastrear progresso do quiz
-            fbq('track', 'AddToCart', {
-                content_name: `Quiz Pergunta ${currentQuestionIndex}`,
-                content_category: 'Quiz Progress',
-                value: (currentQuestionIndex / questions.length) * 10,
-                currency: 'BRL'
-            });
 
             if (currentQuestionIndex < questions.length) {
                 setTimeout(() => showQuestion(currentQuestionIndex), 200);
