@@ -253,6 +253,9 @@
     </div>
 
     <script>
+        // ✅ NOVO: Variável global para armazenar o email do usuário
+        let userEmail = null;
+
         // Perguntas do Quiz
         const questions = [
             {
@@ -409,6 +412,7 @@
             document.getElementById('email-gate').classList.remove('hidden');
         }
 
+        // ✅ MODIFICADO: Armazenar o email para uso posterior
         document.getElementById('email-form').addEventListener('submit', function(e) {
             e.preventDefault();
             const email = document.getElementById('email-input').value;
@@ -418,6 +422,9 @@
                 return;
             }
             if (email) {
+                // ✅ NOVO: Armazenar o email globalmente
+                userEmail = email;
+
                 // Rastrear conversão de lead
                 fbq('track', 'Lead', {
                     content_name: 'Quiz Astrológico - Email Capturado',
@@ -660,8 +667,9 @@ Sua alma está gritando: "VOLTE PARA CASA!"`
             }, 1000);
         }
 
+        // ✅ MODIFICADO: Função completa de rastreamento do botão
         function trackPurchase() {
-            // Rastrear clique no botão de compra
+            // Eventos do Facebook Pixel
             fbq('track', 'Purchase', {
                 content_name: 'Orientação Astrológica Diária',
                 content_category: 'Subscription',
@@ -674,6 +682,45 @@ Sua alma está gritando: "VOLTE PARA CASA!"`
                 value: 9.90,
                 currency: 'BRL'
             });
+
+            // ✅ NOVO: Evento personalizado do Facebook Pixel
+            fbq('trackCustom', 'ButtonClick_OrientacaoAstrologica', {
+                button_name: 'QUERO ORIENTAÇÃO DIÁRIA DOS ASTROS',
+                content_name: 'WhatsApp Astrológico',
+                value: 9.90,
+                currency: 'BRL',
+                timestamp: new Date().toISOString()
+            });
+
+            // ✅ NOVO: Enviar clique do botão para o webhook
+            sendButtonClickToWebhook();
+        }
+
+        // ✅ NOVA FUNÇÃO: Enviar dados do clique do botão para o webhook
+        async function sendButtonClickToWebhook() {
+            try {
+                const payload = {
+                    event_type: 'button_click',
+                    button_name: 'QUERO ORIENTAÇÃO DIÁRIA DOS ASTROS',
+                    product_name: 'WhatsApp Astrológico',
+                    value: 9.90,
+                    currency: 'BRL',
+                    email: userEmail, // ✅ Incluir o email do usuário
+                    timestamp: new Date().toISOString(),
+                    page_url: window.location.href,
+                    user_agent: navigator.userAgent
+                };
+
+                await fetch('https://integracao.netunodigital.com.br/webhook/netunodigital/RCBR3JnUF3dIr8CX', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                console.log('Clique do botão enviado para webhook:', payload);
+            } catch (error) { 
+                console.error('Erro ao enviar clique do botão para webhook:', error); 
+            }
         }
 
         function collectFormattedAnswers() {
