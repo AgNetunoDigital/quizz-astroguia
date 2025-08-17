@@ -667,23 +667,18 @@ Sua alma está gritando: "VOLTE PARA CASA!"`
             }, 1000);
         }
 
-        // ✅ MODIFICADO: Função completa de rastreamento do botão
+        // ✅ MODIFICADO: Função de rastreamento do botão SEM Purchase
         function trackPurchase() {
-            // Eventos do Facebook Pixel
-            fbq('track', 'Purchase', {
-                content_name: 'Orientação Astrológica Diária',
-                content_category: 'Subscription',
-                value: 9.90,
-                currency: 'BRL'
-            });
+            // ❌ REMOVIDO: fbq('track', 'Purchase', {...});
 
+            // Mantido: Subscribe
             fbq('track', 'Subscribe', {
                 content_name: 'WhatsApp Astrológico',
                 value: 9.90,
                 currency: 'BRL'
             });
 
-            // ✅ NOVO: Evento personalizado do Facebook Pixel
+            // Mantido: Evento personalizado
             fbq('trackCustom', 'ButtonClick_OrientacaoAstrologica', {
                 button_name: 'QUERO ORIENTAÇÃO DIÁRIA DOS ASTROS',
                 content_name: 'WhatsApp Astrológico',
@@ -692,7 +687,7 @@ Sua alma está gritando: "VOLTE PARA CASA!"`
                 timestamp: new Date().toISOString()
             });
 
-            // ✅ NOVO: Enviar clique do botão para o webhook
+            // Mantido: Enviar para webhook
             sendButtonClickToWebhook();
         }
 
