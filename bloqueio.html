@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descubra o Bloqueio Invisível do Seu Signo</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '945696946998199');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=945696946998199&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f0f 100%);
+            min-height: 100vh;
+        }
+        .mystical-bg {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.9), rgba(22, 33, 62, 0.8)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="stars" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="%23ffffff" opacity="0.3"><animate attributeName="opacity" values="0.1;0.8;0.1" dur="3s" repeatCount="indefinite"/></circle><circle cx="80" cy="40" r="0.5" fill="%23ffd700" opacity="0.5"><animate attributeName="opacity" values="0.2;0.9;0.2" dur="2s" repeatCount="indefinite"/></circle><circle cx="50" cy="80" r="0.8" fill="%23ff69b4" opacity="0.4"><animate attributeName="opacity" values="0.1;0.7;0.1" dur="4s" repeatCount="indefinite"/></circle></pattern></defs><rect width="100%25" height="100%25" fill="url(%23stars)"/></svg>');
+        }
+        .gradient-text {
+            background: linear-gradient(45deg, #ff69b4, #ffd700, #ff6b35);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .glow {
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
+        }
+        .card-mystical {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 105, 180, 0.2);
+        }
+        .btn-primary {
+            background: linear-gradient(45deg, #e91e63, #ff69b4);
+        }
+        .btn-secondary {
+            background: linear-gradient(45deg, #00d4aa, #00bfa5);
+        }
+        .progress-bar {
+            background: linear-gradient(90deg, #ff69b4, #ffd700);
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .zoom-in {
+            animation: zoomIn 0.3s ease-out;
+        }
+        @keyframes zoomIn {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        @keyframes shootingStar {
+            to {
+                transform: translateX(100vw) translateY(-50vh);
+                opacity: 0;
+            }
+        }
+        .bloqueio-bar {
+            height: 30px;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .bloqueio-fill {
+            height: 100%;
+            border-radius: 15px;
+            transition: width 2s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+        .bloqueio-high {
+            background: linear-gradient(90deg, #ff4444, #ff6666);
+            animation: pulseRed 2s infinite;
+        }
+        .bloqueio-medium {
+            background: linear-gradient(90deg, #ffaa00, #ffcc44);
+            animation: pulseYellow 2s infinite;
+        }
+        .bloqueio-low {
+            background: linear-gradient(90deg, #00aa44, #44cc66);
+            animation: pulseGreen 2s infinite;
+        }
+        @keyframes pulseRed {
+            0%, 100% { box-shadow: 0 0 10px rgba(255, 68, 68, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(255, 68, 68, 0.8); }
+        }
+        @keyframes pulseYellow {
+            0%, 100% { box-shadow: 0 0 10px rgba(255, 170, 0, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(255, 170, 0, 0.8); }
+        }
+        @keyframes pulseGreen {
+            0%, 100% { box-shadow: 0 0 10px rgba(0, 170, 68, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(0, 170, 68, 0.8); }
+        }
+        .bloqueio-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: bold;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+            z-index: 10;
+        }
+    </style>
+</head>
+<body class="mystical-bg text-white">
+
+    <!-- Landing Page -->
+    <div id="landing-page" class="min-h-screen flex items-center justify-center py-12 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="mb-8">
+                <img src="https://cdn1.genspark.ai/user-upload-image/4_generated/c344163e-cff2-4c2a-b362-9687847fc2d0" 
+                     alt="Mulher Mística Astrologia" 
+                     class="w-full max-w-2xl mx-auto rounded-lg shadow-2xl glow">
+            </div>
+            
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                Descubra o <span class="gradient-text">Bloqueio Invisível</span> <br>
+                que Sabota Seu Signo
+            </h1>
+            
+            <p class="text-xl md:text-2xl mb-8 text-gray-300 max-w-3xl mx-auto">
+                Todo mundo carrega um bloqueio oculto, mas cada signo manifesta de um jeito.<br>
+                Faça o diagnóstico místico e descubra por que sua vida está travada.<strong>
+            </p>
+            
+            <div class="mb-8">
+                <div class="flex items-center justify-center space-x-2 text-yellow-400 mb-4">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <span class="ml-2 text-gray-300">Avaliado por <strong>12.847 pessoas</strong></span>
+                </div>
+            </div>
+
+            <button onclick="startQuiz()" class="btn-primary text-white text-xl font-bold py-4 px-12 rounded-full hover:transform hover:scale-105 transition duration-300 shadow-lg">
+                <i class="fas fa-magic mr-2"></i>
+                DESCOBRIR MEU BLOQUEIO
+            </button>
+            
+            <p class="mt-4 text-sm text-gray-400">
+                🎁 Diagnóstico Gratuito Completo
+            </p>
+        </div>
+    </div>
+
+    <!-- Quiz -->
+    <div id="quiz-container" class="hidden min-h-screen py-8 px-4">
+        <div class="max-w-3xl mx-auto">
+            <!-- Barra de Progresso -->
+            <div class="mb-8">
+                <div class="bg-gray-700 rounded-full h-2">
+                    <div id="progress-bar" class="progress-bar h-2 rounded-full transition-all duration-300" style="width: 12.5%"></div>
+                </div>
+                <div class="text-center mt-2 text-gray-300">
+                    Pergunta <span id="current-question">1</span> de 8
+                </div>
+            </div>
+
+            <!-- Perguntas -->
+            <div id="question-container" class="card-mystical rounded-xl p-8 text-center fade-in">
+                <div id="question-content">
+                    <!-- Conteúdo da pergunta será inserido aqui -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tela de Captura de Email -->
+    <div id="email-gate" class="hidden min-h-screen flex items-center justify-center py-12 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="card-mystical rounded-xl p-8 md:p-12 zoom-in">
+                <div class="mb-6">
+                    <i class="fas fa-crystal-ball text-6xl text-purple-400 mb-4"></i>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                        🔮 <span class="gradient-text">Descubra Seu Bloqueio Invisível</span>
+                    </h2>
+                </div>
+                
+                <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+                    Após preencher seus dados, você receberá um Diagnóstico do seu nível de bloqueio oculto e o que fazer para desbloqueá-lo.
+                </p>
+
+                <form id="email-form" class="mb-6">
+                    <div class="max-w-md mx-auto space-y-4">
+                        <div>
+                            <label class="block text-left mb-2 font-semibold">📧 Digite seu melhor email:</label>
+                            <input type="email" id="email-input" required 
+                                   class="w-full p-4 rounded-lg text-black text-center text-lg font-semibold" 
+                                   placeholder="seu@email.com">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-left mb-2 font-semibold">📱 WhatsApp com DDD:</label>
+                            <input type="tel" id="whatsapp-input" required 
+                                   class="w-full p-4 rounded-lg text-black text-center text-lg font-semibold" 
+                                   placeholder="(11) 99999-9999"
+                                   maxlength="15">
+                        </div>
+                        
+                        <button type="submit" class="btn-primary w-full mt-4 text-white text-xl font-bold py-4 rounded-lg hover:transform hover:scale-105 transition duration-300">
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            Receber Diagnóstico
+                        </button>
+                    </div>
+                </form>
+
+                <p class="text-xs text-gray-400">
+                    🔒 Seus dados estão seguros conosco. Não enviamos spam.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Variável global para armazenar o email do usuário
+        let userEmail = null;
+        let userWhatsApp = null;
+
+        // Perguntas do Quiz
+        const questions = [
+            {
+                question: "Qual é a sua maior preocupação financeira atualmente?",
+                options: [
+                    { text: "🤑 Não consigo poupar dinheiro", value: "saving" },
+                    { text: "💸 Tenho medo de investir e perder", value: "fear" },
+                    { text: "✅ Minha renda nunca é suficiente", value: "income" },
+                    { text: "💎 Gasto mais do que ganho", value: "spending" }
+                ]
+            },
+            {
+                question: "Como você se sente em relação ao amor atualmente?",
+                options: [
+                    { text: "💔 Estou sozinho e não encontro ninguém", value: "single" },
+                    { text: "🔄 Tenho relacionamentos, mas não duram", value: "unstable" },
+                    { text: "😴 Estou em um relacionamento, mas falta paixão", value: "routine" },
+                    { text: "😰 Tenho medo de me entregar completamente", value: "fear_love" }
+                ]
+            },
+            {
+                question: "Qual momento da vida você está vivendo?",
+                options: [
+                    { text: "🌪️ Fase de muitas mudanças e incertezas", value: "change" },
+                    { text: "⚖️ Buscando mais estabilidade", value: "stability" },
+                    { text: "🚀 Pronto para grandes realizações", value: "achievement" },
+                    { text: "😑 Sentindo que estou estagnado", value: "stuck" }
+                ]
+            },
+            {
+                question: "Como você toma decisões financeiras importantes?",
+                options: [
+                    { text: "🔮 Sigo minha intuição e sentimentos", value: "intuitive" },
+                    { text: "📊 Analiso todos os dados possíveis", value: "analytical" },
+                    { text: "👥 Peço conselhos para várias pessoas", value: "advice" },
+                    { text: "⏳ Evito tomar decisões até ser obrigado", value: "procrastinate" }
+                ]
+            },
+            {
+                question: "O que você acredita que mais te bloqueia na vida?",
+                options: [
+                    { text: "😨 Medo do fracasso", value: "fear_failure" },
+                    { text: "😔 Falta de autoconfiança", value: "confidence" },
+                    { text: "👪 Padrões familiares limitantes", value: "family" },
+                    { text: "🤷 Não sei ao certo o que quero", value: "direction" }
+                ]
+            },
+            {
+                question: "Em qual área você sente que precisa de mais energia?",
+                options: [
+                    { text: "💼 Carreira e realização profissional", value: "career" },
+                    { text: "❤️ Relacionamentos e vida amorosa", value: "love_area" },
+                    { text: "💰 Dinheiro e abundância material", value: "money_area" },
+                    { text: "🌟 Autoestima e desenvolvimento pessoal", value: "self" }
+                ]
+            },
+            {
+                question: "O que você mais busca para 2025?",
+                options: [
+                    { text: "🏦 Estabilidade financeira e segurança", value: "security" },
+                    { text: "💕 Um amor verdadeiro e duradouro", value: "true_love" },
+                    { text: "📈 Crescimento profissional e sucesso", value: "growth" },
+                    { text: "🧘 Paz interior e equilíbrio", value: "balance" }
+                ]
+            },
+            {
+                question: "Qual seu signo solar?",
+                options: [
+                    { text: "♈ Áries", value: "aries" },
+                    { text: "♉ Touro", value: "touro" },
+                    { text: "♊ Gêmeos", value: "gemeos" },
+                    { text: "♋ Câncer", value: "cancer" },
+                    { text: "♌ Leão", value: "leao" },
+                    { text: "♍ Virgem", value: "virgem" },
+                    { text: "♎ Libra", value: "libra" },
+                    { text: "♏ Escorpião", value: "escorpiao" },
+                    { text: "♐ Sagitário", value: "sagitario" },
+                    { text: "♑ Capricórnio", value: "capricornio" },
+                    { text: "♒ Aquário", value: "aquario" },
+                    { text: "♓ Peixes", value: "peixes" }
+                ]
+            }
+        ];
+
+        // Dados dos bloqueios por signo
+        const bloqueioData = {
+            'aries': { categoria: 'repeticao', nivel: 78, nomeSigno: 'Áries' },
+            'touro': { categoria: 'escassez', nivel: 82, nomeSigno: 'Touro' },
+            'gemeos': { categoria: 'desconexao', nivel: 65, nomeSigno: 'Gêmeos' },
+            'cancer': { categoria: 'merecimento', nivel: 71, nomeSigno: 'Câncer' },
+            'leao': { categoria: 'merecimento', nivel: 68, nomeSigno: 'Leão' },
+            'virgem': { categoria: 'repeticao', nivel: 75, nomeSigno: 'Virgem' },
+            'libra': { categoria: 'merecimento', nivel: 73, nomeSigno: 'Libra' },
+            'escorpiao': { categoria: 'repeticao', nivel: 80, nomeSigno: 'Escorpião' },
+            'sagitario': { categoria: 'desconexao', nivel: 63, nomeSigno: 'Sagitário' },
+            'capricornio': { categoria: 'escassez', nivel: 85, nomeSigno: 'Capricórnio' },
+            'aquario': { categoria: 'desconexao', nivel: 67, nomeSigno: 'Aquário' },
+            'peixes': { categoria: 'merecimento', nivel: 69, nomeSigno: 'Peixes' }
+        };
+
+        let currentQuestionIndex = 0;
+        let answers = [];
+        let userSign = null;
+
+        function startQuiz() {
+            fbq('track', 'ViewContent', {
+                content_name: 'Quiz Astrológico - Bloqueio Invisível',
+                content_category: 'Quiz',
+                content_type: 'quiz_start'
+            });
+
+            document.getElementById('landing-page').classList.add('hidden');
+            document.getElementById('quiz-container').classList.remove('hidden');
+            showQuestion(0);
+        }
+
+        function showQuestion(index) {
+            const question = questions[index];
+            const container = document.getElementById('question-content');
+
+            container.innerHTML = `
+                <h2 class="text-2xl md:text-3xl font-bold mb-8">${question.question}</h2>
+                <div class="space-y-4">
+                    ${question.options.map((option, i) => `
+                        <button onclick="selectAnswer('${option.value}')" 
+                                class="w-full p-4 text-left bg-white bg-opacity-10 hover:bg-opacity-20 rounded-lg transition duration-300 border border-transparent hover:border-pink-400">
+                            ${option.text}
+                        </button>
+                    `).join('')}
+                </div>
+            `;
+
+            const progress = ((index + 1) / questions.length) * 100;
+            document.getElementById('progress-bar').style.width = progress + '%';
+            document.getElementById('current-question').textContent = index + 1;
+        }
+
+        function selectAnswer(value) {
+            answers.push(value);
+            if (currentQuestionIndex === questions.length - 1) userSign = value;
+            currentQuestionIndex++;
+
+            if (currentQuestionIndex < questions.length) {
+                setTimeout(() => showQuestion(currentQuestionIndex), 200);
+            } else {
+                setTimeout(() => showEmailGate(), 300);
+            }
+        }
+
+        function showEmailGate() {
+            document.getElementById('quiz-container').classList.add('hidden');
+            document.getElementById('email-gate').classList.remove('hidden');
+        }
+
+        // Máscara para WhatsApp
+        document.addEventListener('DOMContentLoaded', function() {
+            const whatsappInput = document.getElementById('whatsapp-input');
+            if (whatsappInput) {
+                whatsappInput.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    if (value.length <= 11) {
+                        if (value.length <= 2) {
+                            value = value.replace(/^(\d{0,2})/, '($1');
+                        } else if (value.length <= 7) {
+                            value = value.replace(/^(\d{2})(\d{0,5})/, '($1) $2');
+                        } else {
+                            value = value.replace(/^(\d{2})(\d{5})(\d{0,4})/, '($1) $2-$3');
+                        }
+                    }
+                    e.target.value = value;
+                });
+            }
+        });
+
+        document.getElementById('email-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email-input').value;
+            const whatsapp = document.getElementById('whatsapp-input').value;
+            
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Por favor, digite um email válido!');
+                return;
+            }
+            
+            if (whatsapp.length < 14) {
+                alert('Por favor, digite um WhatsApp completo com DDD!');
+                return;
+            }
+            
+            if (email && whatsapp) {
+                userEmail = email;
+                userWhatsApp = whatsapp;
+
+                fbq('track', 'Lead', {
+                    content_name: 'Quiz Astrológico - Email Capturado',
+                    content_category: 'Lead Generation',
+                    value: 15.00,
+                    currency: 'BRL'
+                });
+
+                fbq('track', 'CompleteRegistration', {
+                    content_name: 'Quiz Astrológico Completo',
+                    content_category: 'Quiz Completion',
+                    value: 25.00,
+                    currency: 'BRL'
+                });
+
+                document.getElementById('email-gate').classList.add('hidden');
+                showResultPage(email, userSign);
+                const formattedAnswers = collectFormattedAnswers();
+                sendDataToWebhook(email, whatsapp, formattedAnswers, userSign);
+            }
+        });
+
+        function getBloqueioLevel(nivel) {
+            if (nivel >= 75) return 'high';
+            if (nivel >= 60) return 'medium';
+            return 'low';
+        }
+
+        function getBloqueioColor(nivel) {
+            if (nivel >= 75) return 'bloqueio-high';
+            if (nivel >= 60) return 'bloqueio-medium';
+            return 'bloqueio-low';
+        }
+
+        function getBloqueioDescription(nivel) {
+            if (nivel >= 75) return 'CRÍTICO - Bloqueio Muito Alto';
+            if (nivel >= 60) return 'ATENÇÃO - Bloqueio Moderado';
+            return 'LEVE - Bloqueio Baixo';
+        }
+
+        function showResultPage(email, sign) {
+            const userData = bloqueioData[sign] || { categoria: 'desconexao', nivel: 65, nomeSigno: 'Seu Signo' };
+            const nivelSucesso = 18;
+            
+            const bloqueios = {
+                escassez: {
+                    title: "⚡ BLOQUEIO INVISÍVEL: ESCASSEZ",
+                    emoji: "🏺"
+                },
+                merecimento: {
+                    title: "⚡ BLOQUEIO INVISÍVEL: MERECIMENTO",
+                    emoji: "💖"
+                },
+                repeticao: {
+                    title: "⚡ BLOQUEIO INVISÍVEL: REPETIÇÃO",
+                    emoji: "🔄"
+                },
+                desconexao: {
+                    title: "⚡ BLOQUEIO INVISÍVEL: DESCONEXÃO",
+                    emoji: "🌫️"
+                }
+            };
+
+            const bloqueioEncontrado = bloqueios[userData.categoria];
+
+            document.body.innerHTML = `
+            <div class="mystical-bg min-h-screen flex items-center justify-center py-12 px-4">
+              <div class="max-w-5xl mx-auto text-center card-mystical rounded-xl p-8 md:p-12 zoom-in">
+                <div class="mb-8">
+                    <div class="text-6xl mb-4">${bloqueioEncontrado.emoji}</div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6 gradient-text">
+                        ${bloqueioEncontrado.title}
+                    </h2>
+                </div>
+                
+                <div class="bg-gray-800 bg-opacity-80 rounded-lg p-6 mb-8">
+                    <h3 class="text-2xl font-bold mb-4 text-yellow-400">📊 SEU NÍVEL DE BLOQUEIO ENERGÉTICO</h3>
+                    
+                    <div class="mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-lg font-bold">Você:</span>
+                            <span class="text-xl font-bold text-red-400">${userData.nivel}% - ${getBloqueioDescription(userData.nivel)}</span>
+                        </div>
+                        <div class="bloqueio-bar mb-4">
+                            <div class="bloqueio-fill ${getBloqueioColor(userData.nivel)}" id="user-bar" style="width: 0%">
+                                <div class="bloqueio-text">${userData.nivel}%</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-lg font-bold">Pessoas Bem-Sucedidas:</span>
+                            <span class="text-xl font-bold text-green-400">${nivelSucesso}% - Fluxo Livre</span>
+                        </div>
+                        <div class="bloqueio-bar">
+                            <div class="bloqueio-fill bloqueio-low" id="success-bar" style="width: 0%">
+                                <div class="bloqueio-text">${nivelSucesso}%</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-red-900 bg-opacity-50 rounded-lg p-4">
+                        <p class="text-lg font-bold text-yellow-300">⚠️ DIFERENÇA CRÍTICA: ${userData.nivel - nivelSucesso} pontos de bloqueio!</p>
+                        <p class="text-gray-200 mt-2">Essa diferença explica por que você sente que "algo sempre trava" enquanto outros prosperam com facilidade. Cada ponto de bloqueio é uma barreira energética que repele oportunidades!</p>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg p-8 mb-8">
+                    <h3 class="text-2xl font-bold mb-4">⚡ Para DESBLOQUEAR DE VEZ o seu Bloqueio Energético nós temos uma solução COMPLETA:</h3>
+                    
+                    <h4 class="text-xl font-bold text-yellow-300 mb-6">🎁 KIT PROSPERIDADE:</h4>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div class="bg-purple-800 bg-opacity-50 rounded-lg p-4">
+                            <h5 class="text-lg font-bold text-pink-300 mb-3">✨ Rituais e Ferramentas:</h5>
+                            <ul class="text-left space-y-2">
+                                <li>• Rituais mensais de abundância e desbloqueio energético</li>
+                                <li>• Calendário lunar 2025</li>
+                                <li>• Orçamento por ciclo lunar</li>
+                                <li>• Mapa de compatibilidade amorosa com as melhores datas</li>
+                                <li>• Os 5 segredos da prosperidade pelos Astros</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-pink-800 bg-opacity-50 rounded-lg p-4">
+                            <h5 class="text-lg font-bold text-purple-300 mb-3">🎯 Bônus Exclusivo:</h5>
+                            <h6 class="text-lg font-bold text-yellow-300 mb-2">30 DIAS DE ORIENTAÇÕES ASTROLÓGICAS</h6>
+                            <p class="text-left">Durante 30 dias, todos os dias de manhã você receberá no seu WhatsApp o seu Astroguia - orientações personalizadas através do seu mapa astral para nunca mais travar suas decisões em bloqueios energéticos.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-black bg-opacity-40 rounded-lg p-4 mb-6">
+                        <div class="flex items-center justify-center mb-4">
+                            <span class="text-lg line-through mr-3 opacity-70">De R$ 59,90</span>
+                            <span class="text-2xl font-bold text-yellow-400">por R$ 19,90</span>
+                            <span class="ml-3 bg-red-500 px-3 py-1 rounded-full text-sm font-bold">SÓ HOJE!</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-center">
+                        <button onclick="trackFirstOffer()" 
+                                class="btn-secondary text-white text-xl font-bold py-4 px-8 rounded-full hover:transform hover:scale-105 transition duration-300 shadow-lg">
+                            Eu quero Desbloquear a minha vida!
+                        </button>
+                    </div>
+                </div>
+
+                <div class="text-center text-gray-400 text-sm">
+                    <p>🔮 Que os astros iluminem seu caminho de prosperidade!</p>
+                </div>
+              </div>
+            </div>
+            `;
+
+            setTimeout(() => {
+                document.getElementById('user-bar').style.width = userData.nivel + '%';
+                document.getElementById('success-bar').style.width = nivelSucesso + '%';
+            }, 1000);
+        }
+
+        function trackFirstOffer() {
+            fbq('track', 'Subscribe', {
+                content_name: 'Kit Prosperidade - Primeira Oferta',
+                value: 19.90,
+                currency: 'BRL'
+            });
+
+            fbq('trackCustom', 'ButtonClick_PrimeiraOferta', {
+                button_name: 'Eu quero Desbloquear a minha vida!',
+                content_name: 'Kit Prosperidade',
+                value: 19.90,
+                currency: 'BRL',
+                timestamp: new Date().toISOString()
+            });
+
+            window.open('https://checkout.pagtrust.com.br/ckfeb8cdc7?funnel=fn2f4fb5f5', '_blank');
+        }
+
+        function collectFormattedAnswers() {
+            const questionTexts = [
+                "Qual é a sua maior preocupação financeira atualmente?",
+                "Como você se sente em relação ao amor atualmente?",
+                "Qual momento da vida você está vivendo?",
+                "Como você toma decisões financeiras importantes?",
+                "O que você acredita que mais te bloqueia na vida?",
+                "Em qual área você sente que precisa de mais energia?",
+                "O que você mais busca para 2025?",
+                "Qual seu signo solar?"
+            ];
+            
+            const answerTexts = {
+                "saving": "🤑 Não consigo poupar dinheiro",
+                "fear": "💸 Tenho medo de investir e perder",
+                "income": "✅ Minha renda nunca é suficiente",
+                "spending": "💎 Gasto mais do que ganho",
+                "single": "💔 Estou sozinho e não encontro ninguém",
+                "unstable": "🔄 Tenho relacionamentos, mas não duram",
+                "routine": "😴 Estou em um relacionamento, mas falta paixão",
+                "fear_love": "😰 Tenho medo de me entregar completamente",
+                "change": "🌪️ Fase de muitas mudanças e incertezas",
+                "stability": "⚖️ Buscando mais estabilidade",
+                "achievement": "🚀 Pronto para grandes realizações",
+                "stuck": "😑 Sentindo que estou estagnado",
+                "intuitive": "🔮 Sigo minha intuição e sentimentos",
+                "analytical": "📊 Analiso todos os dados possíveis",
+                "advice": "👥 Peço conselhos para várias pessoas",
+                "procrastinate": "⏳ Evito tomar decisões até ser obrigado",
+                "fear_failure": "😨 Medo do fracasso",
+                "confidence": "😔 Falta de autoconfiança",
+                "family": "👪 Padrões familiares limitantes",
+                "direction": "🤷 Não sei ao certo o que quero",
+                "career": "💼 Carreira e realização profissional",
+                "love_area": "❤️ Relacionamentos e vida amorosa",
+                "money_area": "💰 Dinheiro e abundância material",
+                "self": "🌟 Autoestima e desenvolvimento pessoal",
+                "security": "🏦 Estabilidade financeira e segurança",
+                "true_love": "💕 Um amor verdadeiro e duradouro",
+                "growth": "📈 Crescimento profissional e sucesso",
+                "balance": "🧘 Paz interior e equilíbrio",
+                "aries": "♈ Áries",
+                "touro": "♉ Touro",
+                "gemeos": "♊ Gêmeos",
+                "cancer": "♋ Câncer",
+                "leao": "♌ Leão",
+                "virgem": "♍ Virgem",
+                "libra": "♎ Libra",
+                "escorpiao": "♏ Escorpião",
+                "sagitario": "♐ Sagitário",
+                "capricornio": "♑ Capricórnio",
+                "aquario": "♒ Aquário",
+                "peixes": "♓ Peixes"
+            };
+            
+            let formattedAnswers = [];
+            for (let i = 0; i < answers.length && i < questionTexts.length; i++) {
+                const questionText = questionTexts[i];
+                const answerText = answerTexts[answers[i]] || answers[i];
+                formattedAnswers.push(`${questionText} - ${answerText}`);
+            }
+            return formattedAnswers;
+        }
+
+        async function sendDataToWebhook(email, whatsapp, formattedAnswers, sign) {
+            try {
+                const userData = bloqueioData[sign] || { categoria: 'desconexao', nivel: 65, nomeSigno: 'Desconhecido' };
+                const payload = {
+                    email: email,
+                    whatsapp: whatsapp,
+                    answers: formattedAnswers,
+                    signo: sign,
+                    bloqueio_categoria: userData.categoria,
+                    bloqueio_nivel: userData.nivel,
+                    timestamp: new Date().toISOString(),
+                    quiz_name: "Quiz Astrológico - Bloqueio Invisível",
+                    page_url: window.location.href
+                };
+                
+                await fetch('https://hook-auto.netunodigital.com.br/webhook/jE1UNB3E7COvnouR', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                console.log('Dados enviados para webhook:', payload);
+            } catch (error) { 
+                console.error('Erro ao enviar dados:', error); 
+            }
+        }
+    </script>
+</body>
+</html>
